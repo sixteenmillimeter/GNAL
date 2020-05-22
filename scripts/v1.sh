@@ -11,7 +11,7 @@ SIZES=( "50ft" "100ft" )
 
 mkdir -p $DIST
 
-echo "version,cpu,file,file_hash,file_size,source_hash,source_size,render_time" > $NOTES
+echo "version,cpu,file,file_hash,file_size,source_hash,source_size,facets,volume,render_time" > $NOTES
 
 for SIZE in "${SIZES[@]}"
 do
@@ -32,7 +32,10 @@ do
 		hash=`sha256sum "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl" | awk '{ print $1 }'`
 		fileSize=`wc -c < "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl"`
 		fileSize=`echo $fileSize | xargs`
-		line="${VERSION},${CPU},gnal_${SIZE}_${FILE}.stl,$hash,$fileSize,$srchash,$srcsize,$runtime"
+		ao=`admesh -c "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl"`
+		facets=`echo $ao | grep "Number of facets" | awk '{print $5}'`
+		volume=`echo $ao | grep "Number of parts"  | awk '{print $8}'`
+		line="${VERSION},${CPU},gnal_${SIZE}_${FILE}.stl,$hash,$fileSize,$srchash,$srcsize,$facets,$volume,$runtime"
 		echo "$line" >> $NOTES
 		echo "$line"
 	done
