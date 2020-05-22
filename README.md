@@ -9,7 +9,7 @@ Want to buy one?
 
 ## What's GNAL? Gnal's Not A Lomo!
 
-GNAL stands for Gnal's Not A Lomo because it isn't. While inspired by a certain motion picture development tank the goal of this project is to create an open source, modification-friendly processing system for small format movie film with the added constraint that it be 3D printable or otherwise able to be fabricated on a small scale. All source code and STL files for printing will be made available here.
+GNAL stands for Gnal's Not A Lomo because it isn't. While inspired by a certain motion picture development tank the goal of this project is to create an open source, modification-friendly processing system for small format movie film with the added constraint that it be 3D printable or otherwise able to be fabricated on a small scale. All source code and STL files for printing will be made available in this repository.
 
 GNAL is built using [OpenSCAD](https://www.openscad.org/). OpenSCAD is a free, open source CAD program that uses scripts to generate objects. Building this project in OpenSCAD serves two purposes: it uses only free and open source software to create the GNAL processing spirals and it future-proofs the design by preserving its dimensions in human readable text format. Even if OpenSCAD were to disappear tomorrow (sincerely hope it doesn't) it would still be possible to recreate the GNAL models in another CAD program just by reading the code and reproducing the measurements.
 
@@ -52,19 +52,30 @@ Good question!
 
 ## Printers
 
-The diameter of these spiral reels limit the number of printers that are capable of printing this design. The 50ft model is 225.71mm wide at the base and the 100ft model is 
+The diameter of these spiral reels limit the number of printers that are capable of printing this design. The 50ft/15m model is 225.71mm (8.88in) wide at the base and the 100ft/30m model is 299mm (11.77in) wide. 
 
-There are people printing these spirals in sections on smaller printers, but that is not a recommended use of these files as it requires extreme precision to reconstruct the parts into a reel that will load smoothly. Another thing to consider is the longevity of the Don't let that stop you, though. That's just not a goal of *this* particular project.
+**50ft/15m Capable**
+
+[Printers with print bed > 225mm x 225mm](https://www.aniwaa.com/comparison/3d-printers/?sort=price&order=asc&filter_search&filter_price_minimum&filter_price_maximum&filter_build_size_width=225&filter_build_size_height=225&filter_build_size_depth)
+
+**100ft/30m Capable**
+
+* [Creality Ender 5 Plus](https://www.creality3d.shop/collections/3d-printer/products/creality3d-ender-5-plus-3d-printer) ***Tested***
+*
+
+[Printers with print bed > 300mm x 300mm](https://www.aniwaa.com/comparison/3d-printers/?filter_search&filter_price_minimum&filter_price_maximum&filter_build_size_width=300&filter_build_size_height=300&filter_build_size_depth)
+
+There are people printing spirals in sections on smaller printers, but that is not a recommended use of these files as it requires extreme precision to reconstruct the parts into a reel that will load smoothly. Another thing to consider is the longevity of the bond made by the adhesive you choose. Don't let that stop you, though. A multi-part printed reel is just not a priority for *this* particular project.
 
 -----
 
 ## Material
 
-PETG is the recommended plastic for printing the GNAL. Since this is a piece of darkroom equipment its exposure to water and photochemistry is inevetable and should be considered first. PETG (Polyethylene terephthalate glycol) is a copolymer of PET, which is a plastic that's typically encountered
-
-PLA is not recommended but this doesn't mean you can't get an acceptable results with it. The lack of endorsement comes from mostly anecdotal experience witnessing the wear and tear of water on PLA. Biodegradable and pourous, PLA prints will wear down in the weakest parts first and on this model that would be the spiral. If you do not need your processing equipment to last a long time
+PETG is the recommended plastic for printing the GNAL. Since this is a piece of darkroom equipment its exposure to water and photochemistry is inevetable and should be considered first. PETG (Polyethylene terephthalate glycol) is a copolymer of PET, which is a plastic that's typically encountered in plastic bottles and food containers. By prioritizing the material
 
 ABS is a viable option but has more tendency to warp on larger prints without proper temperature control around the print bed. Since this model needs to be consistently flat across the bottom of the reel, 
+
+PLA is not recommended but this doesn't mean you can't get an acceptable results with it. The lack of endorsement comes from mostly anecdotal experience witnessing the wear and tear of water on PLA. Biodegradable and pourous, PLA prints will wear down in the weakest parts first and on this model that would be the spiral. If you do not need your processing equipment to last a long time
 
 -----
 
