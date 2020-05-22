@@ -2,7 +2,7 @@
 
 echo "Compiling GNAL v1"
 
-VERSION=`openscad -v 2>&1 >/dev/null | awk '{print $3}'`
+VERSION=`bash ./scripts/version.sh`
 CPU=`bash ./scripts/cpu.sh`
 DIST=./dist/
 NOTES=./notes/v1.csv
