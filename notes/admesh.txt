@@ -1,0 +1,38 @@
+admesh --help
+
+ADMesh version 0.98.4
+Copyright (C) 1995, 1996  Anthony D. Martin
+Usage: admesh [OPTION]... file
+
+     --x-rotate=angle     Rotate CCW about x-axis by angle degrees
+     --y-rotate=angle     Rotate CCW about y-axis by angle degrees
+     --z-rotate=angle     Rotate CCW about z-axis by angle degrees
+     --xy-mirror          Mirror about the xy plane
+     --yz-mirror          Mirror about the yz plane
+     --xz-mirror          Mirror about the xz plane
+     --scale=factor       Scale the file by factor (multiply by factor)
+     --translate=x,y,z    Translate the file to x, y, and z
+     --merge=name         Merge file called name with input file
+ -e, --exact              Only check for perfectly matched edges
+ -n, --nearby             Find and connect nearby facets. Correct bad facets
+ -t, --tolerance=tol      Initial tolerance to use for nearby check = tol
+ -i, --iterations=i       Number of iterations for nearby check = i
+ -m, --increment=inc      Amount to increment tolerance after iteration=inc
+ -u, --remove-unconnected Remove facets that have 0 neighbors
+ -f, --fill-holes         Add facets to fill holes
+ -d, --normal-directions  Check and fix direction of normals(ie cw, ccw)
+     --reverse-all        Reverse the directions of all facets and normals
+ -v, --normal-values      Check and fix normal values
+ -c, --no-check           Don't do any check on input file
+ -b, --write-binary-stl=name   Output a binary STL file called name
+ -a, --write-ascii-stl=name    Output an ascii STL file called name
+     --write-off=name     Output a Geomview OFF format file called name
+     --write-dxf=name     Output a DXF format file called name
+     --write-vrml=name    Output a VRML format file called name
+     --help               Display this help and exit
+     --version            Output version information and exit
+
+The functions are executed in the same order as the options shown here.
+So check here to find what happens if, for example, --translate and --merge
+options are specified together.  The order of the options specified on the
+command line is not important.
