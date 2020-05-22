@@ -2,14 +2,15 @@
 
 echo "Compiling GNAL v1"
 
+VERSION=`openscad -v 2>&1 >/dev/null | awk '{print $3}'`
 DIST=./dist/
 NOTES=./notes/v1.csv
 FILES=( "spacer" "top" "spiral_top" "spiral_bottom" )
-SIZES=( "50ft" "100ft" ) #  
+SIZES=( "50ft" "100ft" ) 
 
 mkdir -p $DIST
 
-echo "file,file_hash,file_size,source_hash,source_size,render_time" > $NOTES
+echo "version,cpu,file,file_hash,file_size,source_hash,source_size,render_time" > $NOTES
 
 for SIZE in "${SIZES[@]}"
 do
