@@ -2,19 +2,20 @@
 
 echo "Compiling GNAL v1"
 
+VERSION=`openscad -v 2>&1 >/dev/null | awk '{print $3}'`
 DIST=./dist/
 NOTES=./notes/v1.csv
 FILES=( "spacer" "top" "spiral_top" "spiral_bottom" )
-SIZES=( "50ft" "100ft" )
+SIZES=( "50ft" "100ft" ) 
 
 mkdir -p $DIST
 
-echo "file,file_hash,file_size,source_hash,source_size,render_time" > $NOTES
+echo "version,cpu,file,file_hash,file_size,source_hash,source_size,render_time" > $NOTES
 
 for SIZE in "${SIZES[@]}"
 do
 	:
-	mkdir -p "$DIST/$SIZE_v1"
+	mkdir -p "${DIST}/${SIZE}_v1"
 	srchash=`sha256sum "${SIZE}_v1/gnal_${SIZE}.scad" | awk '{ print $1 }'`
 	srcsize=`wc -c < "${SIZE}_v1/gnal_${SIZE}.scad"`
 	srcsize=`echo $srcsize | xargs`
