@@ -83,8 +83,9 @@ PLA is not recommended but this doesn't mean you can't get an acceptable results
 
 ### Dependencies
 
-* [OpenSCAD](https://www.openscad.org/downloads.html) + [cli](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment) ([Mac](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment#MacOS_notes)) ([Windows](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment#Windows_notes))
 * Bash
+* [OpenSCAD](https://www.openscad.org/downloads.html) + [cli](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment) ([Mac](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment#MacOS_notes)) ([Windows](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment#Windows_notes))
+* [ADMesh](https://github.com/admesh/admesh)
 
 ### Build Scripts
 
