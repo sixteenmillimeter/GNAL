@@ -30,6 +30,6 @@ do
 		hash=`sha256sum "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl" | awk '{ print $1 }'`
 		fileSize=`wc -c < "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl"`
 		fileSize=`echo $fileSize | xargs`
-		echo "gnal_${SIZE}_${FILE}.stl,$hash,$fileSize,$srchash,$srcsize,$runtime" #>> $NOTES
+		echo "gnal_${SIZE}_${FILE}.stl,$hash,$fileSize,$srchash,$srcsize,$runtime" >> $NOTES
 	done
 done
