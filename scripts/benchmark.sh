@@ -5,8 +5,8 @@ CPU=`bash ./scripts/cpu.sh`
 DATE=`date -u +%s` #timestamp in seconds
 NOTES="./notes/benchmark.csv"
 
-ROTATIONS=( 1 2 ) # 5 10 20 )
-DIAMETERS=( 47 ) # 225 300 )
+ROTATIONS=( 1 2 5 10 20 )
+DIAMETERS=( 47 225 300 )
 COMPLETE=( 40 60 )
 
 mkdir -p benchmark
