@@ -1,6 +1,6 @@
-include <./threads.scad>;
+include <../libraries/threads.scad>;
 //https://www.thingiverse.com/thing:186660
-include <./path_extrude.scad>;
+include <../libraries/path_extrude.scad>;
 
 $fn = 20;
 
