@@ -3,6 +3,7 @@
 echo "Compiling GNAL v1"
 
 VERSION=`openscad -v 2>&1 >/dev/null | awk '{print $3}'`
+CPU=`bash ./scripts/cpu.sh`
 DIST=./dist/
 NOTES=./notes/v1.csv
 FILES=( "spacer" "top" "spiral_top" "spiral_bottom" )
@@ -31,6 +32,8 @@ do
 		hash=`sha256sum "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl" | awk '{ print $1 }'`
 		fileSize=`wc -c < "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl"`
 		fileSize=`echo $fileSize | xargs`
-		echo "gnal_${SIZE}_${FILE}.stl,$hash,$fileSize,$srchash,$srcsize,$runtime" >> $NOTES
+		line="${VERSION},${CPU},gnal_${SIZE}_${FILE}.stl,$hash,$fileSize,$srchash,$srcsize,$runtime"
+		echo "$line" >> $NOTES
+		echo "$line"
 	done
 done
