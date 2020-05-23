@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Compiling GNAL v1"
+echo "Rendering GNAL v1"
 
 VERSION=`bash ./scripts/version.sh`
 CPU=`bash ./scripts/cpu.sh`
