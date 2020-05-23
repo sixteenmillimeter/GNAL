@@ -58,7 +58,7 @@ do
 	   : 
 	   	echo "Rendering complete ${SPIRAL} with ${C} rotations"
 	   	#TMP=`mktemp`
-	   	TMP="benchmark/${FILENAME}_${D}_${ROT}_100"
+	   	TMP="benchmark/${FILENAME}_${D}_${C}_100"
 	   	if test -f "${TMP}.stl"; then
 		   	echo "Benchmark for ${TMP} exists"
 		else
@@ -72,7 +72,7 @@ do
 			facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
 			volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
 
-			line="${VERSION},${CPU},${DATE},${FILENAME},${D},${ROT},100,$size,$facets,$volume,$runtime"
+			line="${VERSION},${CPU},${DATE},${FILENAME},${D},${C},100,$size,$facets,$volume,$runtime"
 			echo $line >> $NOTES
 			echo $line
 
