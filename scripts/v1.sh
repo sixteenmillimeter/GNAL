@@ -24,17 +24,19 @@ do
 	for FILE in "${FILES[@]}"
 	do
 	   : 
-	    echo "${SIZE}_v1/${FILE}.scad"
+	    stl="${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl"
+	    scad="${SIZE}_v1/${FILE}.scad"
+	    echo "$scad"
 	    start=`date +%s`
-		openscad -o "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl" "${SIZE}_v1/${FILE}.scad"
+		openscad -o "$stl" "$scad"
 		end=`date +%s`
 		runtime=$((end-start))
-		hash=`sha256sum "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl" | awk '{ print $1 }'`
-		fileSize=`wc -c < "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl"`
+		hash=`sha256sum "$stl" | awk '{ print $1 }'`
+		fileSize=`wc -c < "$stl"`
 		fileSize=`echo $fileSize | xargs`
-		ao=`admesh -c "${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl"`
-		facets=`echo $ao | grep "Number of facets" | awk '{print $5}'`
-		volume=`echo $ao | grep "Number of parts"  | awk '{print $8}'`
+		ao=`admesh -c "$stl"`
+		facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
+		volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
 		line="${VERSION},${CPU},gnal_${SIZE}_${FILE}.stl,$hash,$fileSize,$srchash,$srcsize,$facets,$volume,$runtime"
 		echo "$line" >> $NOTES
 		echo "$line"
