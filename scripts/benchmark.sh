@@ -11,7 +11,11 @@ COMPLETE=( 40 60 )
 
 mkdir -p benchmark
 
-echo "version,cpu,date,source,diameter,rotations,fn,size,facets,volume,time" > $NOTES
+if test -f "${NOTES}"; then
+	echo "Benchmark file exists"
+else
+	echo "version,cpu,date,source,diameter,rotations,fn,size,facets,volume,time" > $NOTES
+fi
 
 for SPIRAL in ./spiral/*.scad
 do
@@ -26,20 +30,25 @@ do
 		    echo "Rendering ${SPIRAL} for ${ROT} rotations @ ${D}mm"
 		   	#TMP=`mktemp`
 		   	TMP="benchmark/${FILENAME}_${D}_${ROT}_100"
-			start=`date +%s`
-			openscad -o "${TMP}.stl" -D N=${ROT} -D D=${D} -D FN=100 "${SPIRAL}"
-			end=`date +%s`
-			runtime=$((end-start))
-			size=`wc -c < "${TMP}.stl"`
-			size=`echo $size | xargs`
-			ao=`admesh -c "${TMP}.stl"`
-			facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
-			volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
+		   	if test -f "${TMP}.stl"; then
+		   		echo "Benchmark for ${TMP} exists"
+		   	else
+			    start=`date +%s`
+				openscad -o "${TMP}.stl" -D N=${ROT} -D D=${D} -D FN=100 "${SPIRAL}"
+				end=`date +%s`
+				runtime=$((end-start))
 
-			line="${VERSION},${CPU},${DATE},${FILENAME},${D},${ROT},100,$size,$facets,$volume,$runtime"
-			echo $line
-			echo $line >> $NOTES
+				size=`wc -c < "${TMP}.stl"`
+				size=`echo $size | xargs`
 
+				ao=`admesh -c "${TMP}.stl"`
+				facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
+				volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
+
+				line="${VERSION},${CPU},${DATE},${FILENAME},${D},${ROT},100,$size,$facets,$volume,$runtime"
+				echo $line
+				echo $line >> $NOTES
+			fi
 			#rm "${TMP}.stl"
 		done
 	done
@@ -50,20 +59,24 @@ do
 	   	echo "Rendering complete ${SPIRAL} with ${C} rotations"
 	   	#TMP=`mktemp`
 	   	TMP="benchmark/${FILENAME}_${D}_${ROT}_100"
-		start=`date +%s`
-	   	echo -o "${TMP}.stl" -D N=${C} -D D=47 "${SPIRAL}"
-   		end=`date +%s`
-		runtime=$((end-start))
-		size=`wc -c < "${TMP}.stl"`
-		size=`echo $size | xargs`
-		ao=`admesh -c "${TMP}.stl"`
-		facets=`echo $ao | grep "Number of facets" | awk '{print $5}'`
-		volume=`echo $ao | grep "Number of parts"  | awk '{print $8}'`
+	   	if test -f "${TMP}.stl"; then
+		   	echo "Benchmark for ${TMP} exists"
+		else
+			start=`date +%s`
+		    openscad -o "${TMP}.stl" -D N=${C} -D D=47 -D FN=100 "${SPIRAL}"
+	   		end=`date +%s`
+			runtime=$((end-start))
+			size=`wc -c < "${TMP}.stl"`
+			size=`echo $size | xargs`
+			ao=`admesh -c "${TMP}.stl"`
+			facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
+			volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
 
-		line="${VERSION},${CPU},${DATE},${FILENAME},${D},${ROT},100,$size,$facets,$volume,$runtime"
-		#echo $line >> $NOTES
-		echo $line
+			line="${VERSION},${CPU},${DATE},${FILENAME},${D},${ROT},100,$size,$facets,$volume,$runtime"
+			echo $line >> $NOTES
+			echo $line
 
-		#rm "${TMP}.stl"
+			#rm "${TMP}.stl"
+		fi
 	done
 done
