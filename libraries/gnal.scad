@@ -253,7 +253,7 @@ module spacer_outer_ridges () {
         }
     }
 }
-module spacer () {
+module gnal_spacer () {
     add = 3.25;
     core_d = 29.5;
     core_bottom_d = 26.2 + .2;

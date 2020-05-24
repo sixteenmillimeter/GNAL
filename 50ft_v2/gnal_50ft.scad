@@ -6,8 +6,9 @@ $fn = 20;
 
 SPOKE_COUNT = 24;
 
+PART="";
 
-module gnal_spiral_50ft (spiral_count = 40, od = 215.75) {
+module gnal_50ft_spiral (spiral_count = 40, od = 215.75) {
     outer_d = 215;
     outer_d_inside = 209;
     outer_h = 7.5;
@@ -80,7 +81,7 @@ module gnal_spiral_50ft (spiral_count = 40, od = 215.75) {
     }
 }
 
-module top () {
+module gnal_50ft_top () {
     H = 5;
     center_d = 53;
     spoke_w = 4.5;
@@ -171,6 +172,15 @@ module film_guide (rotations = 40, od = 215.75) {
         PITCH,
         XMAXSHAPE);
 }
+
+if (PART == "spiral") {
+    gnal_50ft_spiral();
+} else if (PART == "top") {
+    gnal_50ft_top();
+} else if (PART == "spacer") {
+    gnal_spacer();
+}
+
 
 //difference() {
     //spiral();
