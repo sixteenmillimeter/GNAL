@@ -71,15 +71,17 @@ There are people printing spirals in sections on smaller printers, but that is n
 
 ## Material
 
-PETG is the recommended plastic for printing the GNAL. Since this is a piece of darkroom equipment its exposure to water and photochemistry is inevetable and should be considered first. PETG (Polyethylene terephthalate glycol) is a copolymer of PET, which is a plastic that's typically encountered in plastic bottles and food containers. By prioritizing the material
+PETG is the recommended plastic for printing the GNAL. Since this is a piece of darkroom equipment its exposure to water and photochemistry is inevitable and should be considered first. PETG (Polyethylene terephthalate glycol) is a copolymer of PET, which is a plastic that's typically encountered in plastic bottles and food containers. By prioritizing the material
 
 ABS is a viable option but has more tendency to warp on larger prints without proper temperature control around the print bed. Since this model needs to be consistently flat across the bottom of the reel, 
 
-PLA is not recommended but this doesn't mean you can't get an acceptable results with it. The lack of endorsement comes from mostly anecdotal experience witnessing the wear and tear of water on PLA. Biodegradable and pourous, PLA prints will wear down in the weakest parts first and on this model that would be the spiral. If you do not need your processing equipment to last a long time
+PLA is not recommended but this doesn't mean you can't get an acceptable results with it. The lack of endorsement comes from mostly anecdotal experience witnessing the wear and tear of water on PLA. Biodegradable and porous, PLA prints will wear down in the weakest parts first and on this model that would be the spiral. If you do not need your processing equipment to last a long time
 
 -----
 
 ## Development
+
+This project can be edited with only OpenSCAD and the source files in the `v1` or `v2` directories which make reference to files from `libraries`. If you wish to run the development scripts you should install the following dependencies.
 
 ### Dependencies
 
@@ -91,7 +93,13 @@ PLA is not recommended but this doesn't mean you can't get an acceptable results
 
 Running either of the two scripts, either `scripts/v1.sh` or `scripts/v2.sh`, will start an OpenSCAD build process of all components and will log stats about the resulting files and render times to `notes/v1.csv` or `notes/v2.csv`.
 
-Keep in mind that V1 compile times are extremely long and will use an entire CPU core at 100% utilization while rendering. It's best to run these scripts in the background on a powerful machine or better yet, not at all. See the `dist` folder for pre-compiled STL files for 3D printing.
+Keep in mind that V1 compile times are extremely long and all scripts will use an entire CPU core at 100% utilization while rendering. It's best to run these scripts in the background on a powerful machine or better yet, not at all. See the `dist` folder for pre-compiled STL files for 3D printing.
+
+These scripts will render STL files, PNG images of the files and then
+
+### Benchmarks
+
+The `scripts/benchmark.sh` script will run various tests on the different approaches to generating spirals in the `spiral` directory. 
 
 -----
 
@@ -99,7 +107,7 @@ Keep in mind that V1 compile times are extremely long and will use an entire CPU
 
 ### V1
 
-Intended to be mostly compatable with existing processing spirals with some caveats. The spacer that is typically threaded has been replaced by a friction fit spacer so they are not interchangable.
+Intended to be mostly compatible with existing processing spirals with some caveats. The spacer that is typically threaded has been replaced by a friction fit spacer so they are not interchangeable.
 
 This version is designed to fit in existing tanks and use the same spindle screws.
 
@@ -107,15 +115,15 @@ In the process of building this first version several approaches were evaluated 
 
 Besides the exhausting render times this approach bugged me for one reason: all facets of the spiral were the same size, meaning that the small diameter inner parts of the spiral were packing in millions of unnecessary polygons to allow for the large diameter parts of the spiral to be smooth. This didn't sit well. How many CPU hours are being burned by adding detail to a place that doesn't matter. Answer: a lot.
 
-Finally an external library called [`path_extrude.scad`](https://github.com/gringer/bioinfscripts/blob/master/path_extrude.scad) by [@gringer](https://github.com/gringer) was brought in to handle the complicated spiral extrusion step. A simple function that plots a spiral in Cartesian coordinates is used to draw the path and a 2D triangle is extruded along it by the library.
+Finally an external library called [`path_extrude.scad`](https://github.com/gringer/bioinfscripts/blob/master/path_extrude.scad) by [@gringer](https://github.com/gringer) was brought in to handle the complicated spiral extrusion step. A simple function that plots a spiral in Cartesian coordinates is used to draw the path and a 2D triangle is extruded along it by the library. This allowed for the path to be drawn at a consistent "resolution" throughout the entire spiral, so the facets of the outermost and innermost parts were the same or extremely similar.
 
-Reduced to a single line in order to generate an array of coordinates.
+Here is that function reduced to a single line in order to generate an array of coordinates.
 
 ```
 spiralPath = [ for(t = [0 : $fn + 1]) [((d / 2) + (t * increment)) * cos(t * angle_i), ((d / 2) + (t * increment)) * sin(t * angle_i), 0] ];
 ```
 
-The experimentation in this version predate this particular git repo and so will not be found in the git history, but you can find the vestigial functions in the code with such helpful module names as `spiral()` and `spiral2()` and so on.
+The experimentation in this version predate this particular git repo and so will not be found in the git history, but you can find the vestigial functions in the `spiral` directory used for benchmarking different approaches.
 
 #### Render Stats
 
@@ -147,7 +155,9 @@ Rendered using OpenSCAD version 2019.05 on a 2.2 GHz Core i7 (I7-4770HQ) chip ru
 
 ### V3
 
-The goals of V3 are to **greatly** optimize the spiral generation code for speed and to restore the feature of the V1 spiral which maintains a consistent size of individual facets throughout the spiral as the diameter changes.
+The goals of V3 are to **greatly** optimize the spiral generation code for speed and to restore the feature of the V1 spiral which maintains a consistent size of individual facets throughout the spiral even as the diameter changes. This will be considered a stable release.
+
+This version will also contain a 4x reel stacking feature so that all models can be stacked with 3 spiral reels and a top piece. That will give 200ft capacity to the 50ft model and 400ft capacity to the 100ft model.
 
 ## License
 
