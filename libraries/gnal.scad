@@ -141,7 +141,7 @@ module spiral_bottom_insert_void () {
     }
 }
 
-module spiral_bottom_insert_s8 () {
+module gnal_spiral_bottom_insert_s8 () {
     $fn = 160;
     void_d = 18 - .3;
     H = 17;
@@ -174,7 +174,7 @@ module spiral_bottom_insert_s8 () {
     }
 }
 
-module spiral_bottom_insert_16 () {
+module gnal_spiral_bottom_insert_16 () {
     $fn = 160;
     
     void_d = 18 - .3;
@@ -279,7 +279,7 @@ module gnal_spacer () {
     }
 }
 
-module spacer_16 () {
+module gnal_spacer_16 () {
     core_d = 29.5;
     core_bottom_d = 26.2 + .2;
     void_d = 18;
