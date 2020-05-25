@@ -23,30 +23,38 @@ Good question!
 
 **50ft/15m**
 
-**100ft/30m**
-
+* [Spiral]()
 * [Top]()
 * [Top Spacer]()
-* [Bottom Spiral Insert]()
-* [Bottom Spiral Spacer]()
+* [Bottom Spiral Insert S8]()
+* [Bottom Spiral Insert 16mm]()
+* [Bottom Spacer 16mm]()
+
+**100ft/30m**
+
 * [Spiral]()
+* [Top]()
+* [Top Spacer]()
+* [Bottom Spiral Insert S8]()
+* [Bottom Spiral Insert 16mm]()
+* [Bottom Spacer 16mm]()
 
 
 ## V1 STL Files
 
 **50ft/15m**
 
-* [Top](dist/50ft_v1/gnal_50ft_top.scad)
-* [Spacer](dist/50ft_v1/gnal_50ft_top)
-* [Top Spiral](dist/50ft_v1/gnal_50ft_top)
-* [Top Spiral](dist/50ft_v1/gnal_50ft_top)
+* [Bottom Spiral](dist/50ft_v1/gnal_50ft_bottom_spiral.stl)
+* [Top Spiral](dist/50ft_v1/gnal_50ft_top_spiral.stl)
+* [Top](dist/50ft_v1/gnal_50ft_top.stl)
+* [Spacer](dist/50ft_v1/gnal_50ft_spacer.stl)
 
 **100ft/30m**
 
-* [Top](dist/100ft_v1/gnal_100ft_top.scad)
-* [Spacer](dist/100ft_v1/gnal_100ft_top)
-* [Top Spiral](dist/100ft_v1/gnal_100ft_top)
-* [Top Spiral](dist/100ft_v1/gnal_100ft_top)
+* [Bottom Spiral](dist/100ft_v1/gnal_100ft_bottom_spiral.stl)
+* [Top Spiral](dist/100ft_v1/gnal_100ft_top_spiral.stl)
+* [Top](dist/100ft_v1/gnal_100ft_top.stl)
+* [Spacer](dist/100ft_v1/gnal_100ft_spacer.stl)
 
 -----
 
@@ -56,14 +64,14 @@ The diameter of these spiral reels limit the number of printers that are capable
 
 **50ft/15m Capable**
 
-[Printers with print bed > 225mm x 225mm](https://www.aniwaa.com/comparison/3d-printers/?sort=price&order=asc&filter_search&filter_price_minimum&filter_price_maximum&filter_build_size_width=225&filter_build_size_height=225&filter_build_size_depth)
+[aniwaa.com Search: Printers with print bed > 225mm x 225mm](https://www.aniwaa.com/comparison/3d-printers/?sort=price&order=asc&filter_search&filter_price_minimum&filter_price_maximum&filter_build_size_width=225&filter_build_size_height=225&filter_build_size_depth)
 
 **100ft/30m Capable**
 
 * [Creality Ender 5 Plus](https://www.creality3d.shop/collections/3d-printer/products/creality3d-ender-5-plus-3d-printer) ***Tested***
-*
+* []()
 
-[Printers with print bed > 300mm x 300mm](https://www.aniwaa.com/comparison/3d-printers/?filter_search&filter_price_minimum&filter_price_maximum&filter_build_size_width=300&filter_build_size_height=300&filter_build_size_depth)
+[aniwaa.com Search: Printers with print bed > 300mm x 300mm](https://www.aniwaa.com/comparison/3d-printers/?filter_search&filter_price_minimum&filter_price_maximum&filter_build_size_width=300&filter_build_size_height=300&filter_build_size_depth)
 
 There are people printing spirals in sections on smaller printers, but that is not a recommended use of these files as it requires extreme precision to reconstruct the parts into a reel that will load smoothly. Another thing to consider is the longevity of the bond made by the adhesive you choose. Don't let that stop you, though. A multi-part printed reel is just not a priority for *this* particular project.
 
