@@ -5,7 +5,10 @@ $fn=FN;
 
 include <../libraries/path_extrude.scad>;
 
-//Distinction from v4 compressed spiralPath generation into single line
+/**
+ * Distinction from v4 compressed spiralPath generation into single line. This refactor
+ * required repeating calculations that were assigned to variables in spiral_4. 
+ **/
 
 module spiral (count = 40, start_d = 48, spacing = 2.095) {
     facet_size = 10;

@@ -5,7 +5,9 @@ $fn=FN;
 
 include <../libraries/path_extrude.scad>;
 
-//Distinction from v3: use of for loop and union to join rotations
+/**
+ * Distinction from spiral_3: use of for loop and union to join rotations.
+ **/
 
 module spiral (count = 40, start_d = 48, spacing = 2.075) {
     facet_size = 30;

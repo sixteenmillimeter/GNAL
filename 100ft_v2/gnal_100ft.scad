@@ -1,6 +1,6 @@
 //V2
 
-include <../libraries/gnal.scad>;
+include <../libraries/gnal_v2.scad>;
 
 SPOKE_COUNT = 24;
 PART="";

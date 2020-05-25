@@ -5,6 +5,14 @@ $fn=FN;
 
 include <../libraries/path_extrude.scad>;
 
+/**
+ * This approach is the fastest by far (!!!). Unlike spiral_4, this does not adjust
+ * the $fn value as the spiral grows in diameter, but simply uses it as a constant
+ * for all spirals. This means that the innermost spiral will have n=$fn facets and 
+ * the outermost facets will have the same number. Need to find a hybrid between
+ * this and #4.
+ **/
+
 module spiral (count = 40, start_d = 48, spacing = 2.075) {
     
     //$fn = 80;
