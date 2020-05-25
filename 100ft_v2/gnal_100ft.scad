@@ -257,4 +257,10 @@ if (PART == "spiral") {
     gnal_100ft_top();
 } else if (PART == "spacer") {
     gnal_spacer();
+} else if (PART == "insert_s8") {
+    gnal_spiral_bottom_insert_s8();
+} else if (PART == "insert_16") {
+    gnal_spiral_bottom_insert_16();
+} else if (PART == "spacer_16") {
+    gnal_spacer_16();
 }
