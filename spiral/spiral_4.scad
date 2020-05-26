@@ -6,7 +6,9 @@ $fn=FN;
 include <../libraries/path_extrude.scad>;
 
 /**
- * Distinction from spiral_3: use of for loop and union to join rotations.
+ * Distinction from spiral_3: use of for loop and union to join rotations. Somehow
+ * got it into my head that this was faster? It does adjust the facet size to the 
+ * diameter.
  **/
 
 module spiral (count = 40, start_d = 48, spacing = 2.075) {
