@@ -1,29 +1,4 @@
-
-
-D=47; // start diameter
-N=40;   // number of spirals
-FN=500;
-$fn=FN;
-
-include <../libraries/path_extrude.scad>;
-
-
-
-    bottom = -7.1;
-    w = 1.2;
-    top_w = .4;
-    top_offset = (w - top_w);
-    h = 2.2;
-    
-	facetProfile = [
-        [w, -bottom],
-        [0, -bottom],
-        [0, 0], 
-        [top_offset, -h],
-        [w, -h],
-        [w, 0]
-	];
-
+include <./path_extrude.scad>;
 
 function X (start_r, spacing, fn, r, i) = (start_r + (r * spacing) + (i * calcIncrement(spacing, fn))) * cos(i * calcAngle(fn));
 function Y (start_r, spacing, fn, r, i) = (start_r + (r * spacing) + (i * calcIncrement(spacing, fn))) * sin(i * calcAngle(fn));
@@ -33,8 +8,8 @@ function calcFacetSize (end_d, fn) = circ( end_d ) / fn;
 //function calcSteps(rotations, fn) = fn * rotations;
 function calcAngle (fn) = 360 / fn;
 function calcFn(start_d, start_fn, end_d, spacing, r) = start_fn + 
-( ((circ(calcR(start_d, spacing, r) * 2) - circ(start_d) ) 
-    / (circ(end_d) - circ(start_d))) * ($fn - start_fn));
+    ( ((circ(calcR(start_d, spacing, r) * 2) - circ(start_d) ) 
+        / (circ(end_d) - circ(start_d))) * ($fn - start_fn));
 function calcR(start_d, spacing, r) = (start_d / 2) + (spacing * r);
 function calcIncrement(spacing, fn) = spacing / fn;
 
@@ -44,6 +19,21 @@ function calcIncrement(spacing, fn) = spacing / fn;
  * 8418 vectors at 60 rotations. It's an edge casem 
  **/
 module spiral (rotations = 40, start_d = 48, spacing = 2.075, fn) {
+
+    bottom = -7.1;
+    w = 1.2;
+    top_w = .4;
+    top_offset = (w - top_w);
+    h = 2.2;
+    
+    facetProfile = [
+        [w, -bottom],
+        [0, -bottom],
+        [0, 0], 
+        [top_offset, -h],
+        [w, -h],
+        [w, 0]
+    ];
 
     end_d = start_d + (spacing * 2 * rotations);
     end_r = end_d / 2;
@@ -61,6 +51,3 @@ module spiral (rotations = 40, start_d = 48, spacing = 2.075, fn) {
                     ];
     path_extrude(exShape=facetProfile, exPath=spiralPath);
 }
-
-
-spiral(N, D, 2.075, $fn);
