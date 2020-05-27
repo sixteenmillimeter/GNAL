@@ -4,7 +4,7 @@ echo "Rendering GNAL v1"
 
 VERSION=`bash ./scripts/version.sh`
 CPU=`bash ./scripts/cpu.sh`
-DIST=./dist/
+DIST=./stl/
 NOTES=./notes/v1.csv
 FILES=( "spacer" "top" "spiral_top" "spiral_bottom" )
 SIZES=( "50ft" "100ft" ) 

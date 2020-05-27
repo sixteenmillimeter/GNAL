@@ -5,7 +5,7 @@ echo "Rendering GNAL ${V}"
 
 VERSION=`bash ./scripts/version.sh`
 CPU=`bash ./scripts/cpu.sh`
-DIST=./dist
+DIST=./stl
 IMG=./img
 
 NOTES=./notes/${V}.csv
@@ -47,6 +47,14 @@ do
 
 		echo "Rendering image of ${stl}..."
 
-		openscad -o "$png" --preview --imgsize=1920,1080 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
+		if [ "${FILE}" -eq "spiral"]; then
+			tmp=`mktemp`
+			fullPath=`realpath "${stl}"`
+			data="import(\"${fullPath}\");"
+			echo > "${tmp}.scad"
+			openscad -o "$png" --preview --imgsize=1920,1080 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${tmp}.scad"
+		else
+			openscad -o "$png" --preview --imgsize=1920,1080 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
+		fi
 	done
 done
