@@ -30,7 +30,8 @@ function calcIncrement(spacing, fn) = spacing / fn;
 /**
  * spiral_7 - Combination of spiral_3 and spiral_4 that doesn't sacrifice
  * performance. Hits an overflow when $fn is higher than 245 which creates
- * 8418 vectors at 60 rotations. It's an edge casem 
+ * 8418 vectors at 60 rotations. This is an edge case, only appearing in OpenSCAD
+ * 2019.05 (and maybe earlier), but should be explored.
  **/
 module spiral (rotations = 40, start_d = 48, spacing = 2.075, fn) {
 

@@ -32,7 +32,7 @@ module spiral (START_D = 50, SPIRALS = 39) {
 /**
  * Generates a single face of the spiral, in this case a trapazoidal
  * shape. Issues are (1) performance (maybe use of hull()) and (2) all
- * facet lenths are the same, despite the diameter. This means that
+ * facet counts are the same, despite the diameter. This means that
  * there are excessive numbers of facets for the smaller spirals to
  * compensate for the number of facets needed for the outer spiral.
  */
