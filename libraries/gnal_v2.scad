@@ -1,4 +1,4 @@
-//GNAL Shared Library
+//GNAL v2 Shared Library
 
 include <./path_extrude.scad>;
 include <./threads.scad>;
