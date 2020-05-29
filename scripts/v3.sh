@@ -32,7 +32,12 @@ do
 	    png="${IMG}/gnal_${SIZE}_${V}_${FILE}.png"
 	    echo "${scad} - ${FILE}"
 	    start=`date +%s`
-		openscad -o "$stl" -D "PART=\"${FILE}\"" "${scad}"
+	    if [ "${SIZE}" -eq "100ft"]; then
+	    	openscad -o "$stl" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
+	    else
+	    	openscad -o "$stl" -D "PART=\"${FILE}\"" -D "FN=600" "${scad}"
+	    fi
+		
 		end=`date +%s`
 		runtime=$((end-start))
 		hash=`sha256sum "$stl" | awk '{ print $1 }'`

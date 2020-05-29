@@ -3,7 +3,6 @@
 include <../libraries/gnal_v3.scad>;
 
 SPOKE_COUNT = 24;
-PART="";
 
 module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
     outer_d = 299;
@@ -109,15 +108,15 @@ module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
                 }
                 for (i = [0 : SPOKE_COUNT * 2]) {
                     rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 2)) ]) {
-                       translate([(258 / 2) - (spoke_2_len / 2) + 1 , 0, -3.6]) triangle_void_2(); 
+                       translate([(258 / 2) - (spoke_2_len / 2) + 1 , 0, -3.6 ]) triangle_void_2(i); 
                     }
                 }
                 for (i = [0 : SPOKE_COUNT * 4]) {
                     rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 4)) ]) {
                         if (i % 2 == 0) {
-                       translate([(outer_d / 2) - (spoke_3_len / 2) + 1 , 0.3, -3.6]) triangle_void_3(); 
+                            translate([(outer_d / 2) - (spoke_3_len / 2) + 1 , 0.3, -3.6]) triangle_void_3(i); 
                         } else {
-                            translate([(outer_d / 2) - (spoke_3_len / 2) + 1, -0.3, -3.6]) triangle_void_3();
+                            translate([(outer_d / 2) - (spoke_3_len / 2) + 1 , -0.3, -3.6]) triangle_void_3(i); 
                         }
                     }
                 }
@@ -230,12 +229,12 @@ module gnal_100ft_top () {
     }    
 }
 
-
-
 module film_guide (rotations = 60, id = 45.55, spacing = 2.075) {
     $fn = 200;
 	spiral(rotations, id, spacing, $fn);
 }
+
+PART="spiral";
 
 if (PART == "spiral") {
     gnal_100ft_spiral();
