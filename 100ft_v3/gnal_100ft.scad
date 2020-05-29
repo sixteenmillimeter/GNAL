@@ -229,8 +229,9 @@ module gnal_100ft_top () {
     }    
 }
 
+FN = 200;
+$fn = FN;
 module film_guide (rotations = 60, id = 45.55, spacing = 2.075) {
-    $fn = 200;
 	spiral(rotations, id, spacing, $fn);
 }
 
