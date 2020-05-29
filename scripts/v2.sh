@@ -47,7 +47,7 @@ do
 
 		echo "Rendering image of ${stl}..."
 
-		if [ "${FILE}" -eq "spiral"]; then
+		if [[ "${FILE}" == "spiral" ]]; then
 			tmp=`mktemp`
 			fullPath=`realpath "${stl}"`
 			data="import(\"${fullPath}\");"
