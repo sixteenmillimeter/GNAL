@@ -52,14 +52,7 @@ do
 
 		echo "Rendering image of ${stl}..."
 
-		if [[ "${FILE}" -eq "spiral" ]]; then
-			tmp=`mktemp`
-			fullPath=`realpath "${stl}"`
-			data="import(\"${fullPath}\");"
-			echo > "${tmp}.scad"
-			openscad -o "$png" --preview --imgsize=1920,1080 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${tmp}.scad"
-		else
-			openscad -o "$png" --preview --imgsize=1920,1080 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
-		fi
+		openscad -o "$png" --imgsize=1920,1080 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
+		
 	done
 done
