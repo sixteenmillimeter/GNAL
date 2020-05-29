@@ -3,7 +3,6 @@
 include <../libraries/gnal_v3.scad>;
 
 SPOKE_COUNT = 24;
-PART="";
 
 module gnal_50ft_spiral (spiral_count = 40, od = 215.75) {
     outer_d = 215;
@@ -70,7 +69,7 @@ module gnal_50ft_spiral (spiral_count = 40, od = 215.75) {
                 }
                 for (i = [0 : SPOKE_COUNT * 2]) {
                     rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 2)) ]) {
-                       translate([(outer_d / 2) - (spoke_2_len / 2) + 1 , 0, -3.6]) triangle_void_2(); 
+                       translate([(outer_d / 2) - (spoke_2_len / 2) + 1 , 0, -3.6]) triangle_void_2(i); 
                     }
                 }
             }
@@ -157,8 +156,10 @@ module gnal_50ft_top () {
 
 module film_guide (rotations = 40, id = 45.55, spacing = 2.075) {
 	$fn = 200;
-	//spiral(rotations, id, spacing, $fn);
+	spiral(rotations, id, spacing, $fn);
 }
+
+PART="spiral";
 
 if (PART == "spiral") {
     gnal_50ft_spiral();
