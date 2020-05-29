@@ -157,10 +157,10 @@ module gnal_50ft_top () {
 
 module film_guide (rotations = 40, id = 45.55, spacing = 2.075) {
 	$fn = 200;
-	spiral(rotations, id, spacing, $fn);
+	//spiral(rotations, id, spacing, $fn);
 }
 
-if (PART == "") { //spiral
+if (PART == "spiral") {
     gnal_50ft_spiral();
 } else if (PART == "top") {
     gnal_50ft_top();
