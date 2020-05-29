@@ -32,7 +32,7 @@ do
 	    png="${IMG}/gnal_${SIZE}_${V}_${FILE}.png"
 	    echo "${scad} - ${FILE}"
 	    start=`date +%s`
-	    if [ "${SIZE}" -eq "100ft"]; then
+	    if [[ "${SIZE}" == "100ft" ]]; then
 	    	openscad -o "$stl" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
 	    else
 	    	openscad -o "$stl" -D "PART=\"${FILE}\"" -D "FN=600" "${scad}"
@@ -52,7 +52,7 @@ do
 
 		echo "Rendering image of ${stl}..."
 
-		if [ "${FILE}" -eq "spiral"]; then
+		if [[ "${FILE}" -eq "spiral" ]]; then
 			tmp=`mktemp`
 			fullPath=`realpath "${stl}"`
 			data="import(\"${fullPath}\");"
