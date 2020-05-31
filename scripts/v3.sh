@@ -46,13 +46,22 @@ do
 		ao=`admesh -c "$stl"`
 		facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
 		volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
+
 		line="${VERSION},${CPU},$stl,$hash,$fileSize,$srchash,$srcsize,$facets,$volume,$runtime"
 		echo "$line" >> $NOTES
 		echo "$line"
 
 		echo "Rendering image of ${stl}..."
 
-		openscad -o "$png" --imgsize=1920,1080 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
+		if [[ "${FILE}" == "spiral" ]]; then
+			tmp=`mktemp`
+			fullPath=`realpath "${stl}"`
+			data="import(\"${fullPath}\");"
+			echo data > "${tmp}.scad"
+			openscad -o "$png" --imgsize=1920,1080 --colorscheme=DeepOcean "${tmp}.scad"
+		else
+			openscad -o "$png" --imgsize=1920,1080 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
+		fi
 		
 	done
 done
