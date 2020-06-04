@@ -41,9 +41,14 @@ do
 				size=`wc -c < "${TMP}.stl"`
 				size=`echo $size | xargs`
 
-				ao=`admesh -c "${TMP}.stl"`
-				facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
-				volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
+				if ! [ -x "$(command -v admesh)" ]; then
+					facets="N/A"
+					volume="N/A"
+				else
+					ao=`admesh -c "$stl"`
+					facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
+					volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
+				fi
 
 				line="${VERSION},${CPU},${DATE},${FILENAME},${D},${ROT},100,$size,$facets,$volume,$runtime"
 				echo $line

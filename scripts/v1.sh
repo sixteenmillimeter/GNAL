@@ -34,9 +34,14 @@ do
 		hash=`sha256sum "$stl" | awk '{ print $1 }'`
 		fileSize=`wc -c < "$stl"`
 		fileSize=`echo $fileSize | xargs`
-		ao=`admesh -c "$stl"`
-		facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
-		volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
+		if ! [ -x "$(command -v admesh)" ]; then
+			facets="N/A"
+			volume="N/A"
+		else
+			ao=`admesh -c "$stl"`
+			facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
+			volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
+		fi
 		line="${VERSION},${CPU},gnal_${SIZE}_${FILE}.stl,$hash,$fileSize,$srchash,$srcsize,$facets,$volume,$runtime"
 		echo "$line" >> $NOTES
 		echo "$line"
