@@ -107,7 +107,7 @@ These scripts will render STL files, PNG images of the files and then
 
 ### Benchmarks
 
-The `scripts/benchmark.sh` script will run various tests on the different approaches to generating spirals in the `spiral` directory. 
+The `scripts/benchmark.sh` script will run various tests on the different approaches to generating spirals in the `spiral` directory. See notes on the actual results of this script [below](#benchmarks)
 
 -----
 
@@ -166,6 +166,12 @@ Rendered using OpenSCAD version 2019.05 on a 2.2 GHz Core i7 (I7-4770HQ) chip ru
 The goals of V3 are to **greatly** optimize the spiral generation code for speed and to restore the feature of the V1 spiral which maintains a consistent size of individual facets throughout the spiral even as the diameter changes. This will be considered a stable release.
 
 This version will also contain a 4x reel stacking feature so that all models can be stacked with 3 spiral reels and a top piece. That will give 200ft capacity to the 50ft model and 400ft capacity to the 100ft model.
+
+<a name="benchmarks"></a>
+## Benchmarks
+
+In the process of publishing this repository I started questioning claims I was making in this Readme. Throughout the development of this processing reel I've been plagued by long render times.
+
 
 ## License
 
