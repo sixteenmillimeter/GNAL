@@ -43,8 +43,8 @@ function calcIncrement(spacing, fn) = spacing / fn;
 module spiral (rotations = 40, start_d = 48, spacing = 2.075, fn) {
 
     bottom = -7.1;
-    w = 1.2;
-    top_w = .4;
+    w = 1.4;
+    top_w = .8;
     top_offset = (w - top_w);
     h = 2.2;
     
