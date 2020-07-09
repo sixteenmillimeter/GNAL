@@ -77,6 +77,123 @@ module gnal_50ft_spiral (spiral_count = 40, od = 215.75) {
     }
 }
 
+module gnal_50ft_spiral_quarter_full (spiral_count = 40, od = 215.75) {
+    outer_d = 215;
+    outer_d_inside = 209;
+    outer_h = 7.5;
+    
+    spoke_len = 81;
+    spoke_w = 3;
+    spoke_h = 4.2 + 3;
+    
+    spoke_2_len = 43;
+    
+    //override spoke count
+    
+    echo(SPOKE_COUNT);
+    
+    translate([0, 0, -3.6]) difference () {
+        cylinder(r = outer_d / 2, h = spoke_h, center = true, $fn = 500);
+        cylinder(r = outer_d_inside / 2, h = outer_h + 1, center = true, $fn = 500);
+    }
+    
+    difference () {
+        gnal_spiral_core();
+        //rounded spoke voids
+        for (i = [0 : SPOKE_COUNT - 1]) {
+            rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT)]) {
+                translate([0, 26.75, 0]) {
+                    cylinder(r = 2, h = 20, center = true, $fn = 40);
+                }
+            }
+        }
+    }
+    //main spokes
+    for (i = [0 : SPOKE_COUNT - 1]) {
+        rotate([0, 0, i * (360 / SPOKE_COUNT)]) {
+            translate([(spoke_len / 2) + (48 / 2), 0, -3.6]) {
+                if (i % 3 == 0 && i % 6 != 0) { //phew!
+                    cube([spoke_len, spoke_w * 2, spoke_h], center = true);
+                } else {
+                    cube([spoke_len, spoke_w, spoke_h], center = true);
+                }
+                
+            }
+        }
+    }
+    //secondary spokes
+    for (i = [0 : SPOKE_COUNT - 1]) {
+        rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT)]) {
+            translate([(outer_d / 2) - (spoke_2_len / 2) - 2, 0, -3.6]) {
+                cube([spoke_2_len, spoke_w, spoke_h], center = true);
+            }
+        }
+    }
+    //spoke cross bars
+    for (i = [0 : SPOKE_COUNT - 1]) {
+        rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT)]) {
+            translate([63, 0, -3.6]) {
+                rotate([0, 0, 20]) {
+                    cube([ spoke_w, 18, spoke_h], center = true);
+                }
+            }
+        }
+    }
+    
+    translate([0, 0, -.1]) {
+        rotate([0, 0, -90]) {
+            difference () {
+                film_guide(spiral_count);
+                for (i = [0 : SPOKE_COUNT - 1]) {
+                    rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT) ]) {
+                        translate([(spoke_len / 4) + (48 / 2), 0, -3.6]) triangle_void(); 
+                    }
+                }
+                for (i = [0 : (SPOKE_COUNT * 2) - 1]) {
+                    rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 2)) ]) {
+                       translate([(outer_d / 2) - (spoke_2_len / 2) + 1 , 0, -3.6]) triangle_void_2(i); 
+                    }
+                }
+            }
+        }
+    }
+}
+
+module gnal_50ft_spiral_quarter (quarter = "a") {
+    module notch (NOTCH = 5) {
+        cube([NOTCH, NOTCH, 5], center = true);
+        translate([0, 0, (5 / 2) + (1 / 2)]) rotate([0, 0, 45]) cylinder(r1 = NOTCH / 1.4, r2 = 0.1, h = 1, center = true, $fn = 4);
+    }
+    
+    module quarter () {
+        NOTCH = 3;
+        NOTCH_H = -5;
+        NOTCHES = 7;
+        OFFSET = 60;
+        difference () {
+            cube([220, 220, 220], center = true);
+            for (i = [0 : NOTCHES - 1]) {
+                translate([OFFSET - (i * (220 / NOTCHES)), -110, NOTCH_H]) rotate([0, 0, 45]) notch(NOTCH);
+            }
+        }
+        for (i = [0 : NOTCHES - 2]) {
+            translate([-110, OFFSET - (i * (220 / NOTCHES)), NOTCH_H]) rotate([0, 0, 45]) notch(NOTCH);
+        }
+    }
+    intersection () {
+        rotate([0, 0, 45]) gnal_50ft_spiral_quarter_full();
+        if (quarter == "a") {
+            rotate([0, 0, 0]) translate([110, 110, 0]) quarter();
+        } else if (quarter == "b") {
+            rotate([0, 0, 90]) translate([110, 110, 0]) quarter();
+        } else if (quarter == "c") {
+            rotate([0, 0, 180]) translate([110, 110, 0]) quarter();
+        } else if (quarter == "d") {
+            rotate([0, 0, 270]) translate([110, 110, 0]) quarter();
+        }
+    }
+}
+
 module gnal_50ft_top () {
     H = 5;
     center_d = 53;
@@ -93,7 +210,7 @@ module gnal_50ft_top () {
     difference () {
         union () {
             cylinder(r = center_d / 2, h = H, center = true, $fn = 100);
-            for (i = [0 : spokes]) {
+            for (i = [0 : spokes - 1]) {
                 rotate([0, 0, i * (360 / spokes)]) translate([0, outer_d / 4, 0]) cube([spoke_w, (outer_d / 2) - 1, H], center = true);
             }
         }
@@ -104,7 +221,7 @@ module gnal_50ft_top () {
             rotate([0, 0, (i * 90) + 45]) translate([0, hole_spacing / 2, 0]) cylinder(r = hole_d / 2, h = H + 1, center = true);
         }
         //rounding of center cylinder
-        for (i = [0 : spokes]) {
+        for (i = [0 : spokes - 1]) {
             rotate([0, 0, (i + 0.5) * (360 / spokes)]) translate([-2.75, 26.5, 0]) cylinder(r = 2, h = H+1, center = true, $fn = 40);
             rotate([0, 0, (i + 0.5) * (360 / spokes)]) translate([2.75, 26.5, 0]) cylinder(r = 2, h = H+1, center = true, $fn = 40);
             rotate([0, 0, (i + 0.5) * (360 / spokes)]) translate([0, 26.5, 0]) cube([5, 4, H + 1], center = true);
@@ -125,7 +242,7 @@ module gnal_50ft_top () {
         cylinder(r = (inner_d / 2) - 5, h = H + 1, center = true, $fn = 200);
     }
     //rounded cross connectors
-    for (i = [0 : spokes]) {
+    for (i = [0 : spokes - 1]) {
         rotate([0, 0, i * (360 / spokes)]) translate([0, (inner_d / 2) - (spoke_w / 2), 0]) difference() {
             cylinder(r = 6.5, h = H, center = true);
             translate([6.25, 6, 0]) cylinder(r = 4, h = H + 1, center = true, $fn = 60);
@@ -143,7 +260,7 @@ module gnal_50ft_top () {
         translate([0, 0, 4 + 1 + 2.25]) spacer_ridges();
     }
     //rounded outer ring connectors
-    for (i = [0 : spokes]) {
+    for (i = [0 : spokes - 1]) {
         rotate([0, 0, i * (360 / spokes)]) translate([0, 205 / 2, 0]) difference () {
             cube([13, 9, H], center = true);
             translate([6.2, -4.2, 0]) cylinder(r = 4, h = H + 1, center = true, $fn = 60);
@@ -152,17 +269,24 @@ module gnal_50ft_top () {
     }        
 }
 
-
 FN = 200;
 $fn = FN;
 module film_guide (rotations = 40, id = 45.55 - .5, spacing = 2.075) {
 	spiral(rotations, id, spacing, $fn);
 }
 
-PART="spiral";
+PART="quarter_a";
 
 if (PART == "spiral") {
     gnal_50ft_spiral();
+} else if (PART == "quarter_a") {
+    gnal_50ft_spiral_quarter("a");
+} else if (PART == "quarter_b") {
+    gnal_50ft_spiral_quarter("b");
+} else if (PART == "quarter_c") {
+    gnal_50ft_spiral_quarter("c");
+} else if (PART == "quarter_d") {
+    gnal_50ft_spiral_quarter("d");
 } else if (PART == "top") {
     gnal_50ft_top();
 } else if (PART == "spacer") {
