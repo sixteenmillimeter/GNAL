@@ -4,7 +4,7 @@ include <../libraries/gnal_v3.scad>;
 
 SPOKE_COUNT = 24;
 
-module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
+module gnal_100ft_spiral (spiral_count = 60, od = 298.75, quarter = false) {
     outer_d = 299;
     outer_d_inside = outer_d - 6;
     outer_h = 7.5;
@@ -32,7 +32,7 @@ module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
     difference () {
         gnal_spiral_core();
         //rounded spoke voids
-        for (i = [0 : SPOKE_COUNT]) {
+        for (i = [0 : SPOKE_COUNT - 1]) {
             rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT)]) {
                 translate([0, 26.75, 0]) {
                     cylinder(r = 2, h = 20, center = true, $fn = 40);
@@ -42,15 +42,19 @@ module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
     }
     
     //main spokes
-    for (i = [0 : SPOKE_COUNT]) {
+    for (i = [0 : SPOKE_COUNT - 1]) {
         rotate([0, 0, i * (360 / SPOKE_COUNT)]) {
             translate([(spoke_len / 2) + (48 / 2), 0, -3.6]) {
-                cube([spoke_len, spoke_w, spoke_h], center = true);
+                if (quarter && i % 3 == 0 && i % 6 != 0) { //phew!
+                    cube([spoke_len, spoke_w * 2, spoke_h], center = true);
+                } else {
+                    cube([spoke_len, spoke_w, spoke_h], center = true);
+                }
             }
         }
     }
     //secondary spokes
-    for (i = [0 : SPOKE_COUNT]) {
+    for (i = [0 : SPOKE_COUNT - 1]) {
         rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT)]) {
             translate([(outer_d / 2) - (spoke_2_len / 2) - 2, 0, -3.6]) {
                 cube([spoke_2_len, spoke_w, spoke_h], center = true);
@@ -58,7 +62,7 @@ module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
         }
     }
     //spoke cross bars
-    for (i = [0 : SPOKE_COUNT]) {
+    for (i = [0 : SPOKE_COUNT - 1]) {
         rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT)]) {
             translate([63, 0, -3.6]) {
                 rotate([0, 0, 20]) {
@@ -69,7 +73,7 @@ module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
     }
     
     //second spokes
-    for (i = [0 : SPOKE_COUNT]) {
+    for (i = [0 : SPOKE_COUNT - 1]) {
         rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT)]) {
             translate([(outer_d / 2) - (spoke_2_len / 2) - 2, 0, -3.6]) {
                 cube([spoke_2_len, spoke_w, spoke_h], center = true);
@@ -78,7 +82,7 @@ module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
     }
 
     //second spoke cross pieces
-    for (i = [0 : SPOKE_COUNT * 2]) {
+    for (i = [0 : (SPOKE_COUNT * 2) - 1]) {
         rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 2))]) {
             translate([spoke_cross_2_d, 0, -3.6]) {
                 rotate([0, 0, -20]) {
@@ -89,7 +93,7 @@ module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
     }
     
     //third spokes
-    for (i = [0 : SPOKE_COUNT * 2]) {
+    for (i = [0 : (SPOKE_COUNT * 2) - 1]) {
         rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 2))]) {
             translate([(outer_d / 2) - (spoke_3_len / 2) - 2, 0, -3.6]) {
                 cube([spoke_3_len, spoke_3_w, spoke_h], center = true);
@@ -101,17 +105,17 @@ module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
         rotate([0, 0, -90]) {
             difference () {
                 film_guide(spiral_count);
-                for (i = [0 : SPOKE_COUNT]) {
+                for (i = [0 : SPOKE_COUNT - 1]) {
                     rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT) ]) {
                         translate([(83 / 4) + (48 / 2), 0, -3.6]) triangle_void(); 
                     }
                 }
-                for (i = [0 : SPOKE_COUNT * 2]) {
+                for (i = [0 : (SPOKE_COUNT * 2) - 1]) {
                     rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 2)) ]) {
                        translate([(258 / 2) - (spoke_2_len / 2) + 1 , 0, -3.6 ]) triangle_void_2(i); 
                     }
                 }
-                for (i = [0 : SPOKE_COUNT * 4]) {
+                for (i = [0 : (SPOKE_COUNT * 4) - 1]) {
                     rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 4)) ]) {
                         if (i % 2 == 0) {
                             translate([(outer_d / 2) - (spoke_3_len / 2) + 1 , 0.3, -3.6]) triangle_void_3(i); 
@@ -121,6 +125,44 @@ module gnal_100ft_spiral (spiral_count = 60, od = 298.75) {
                     }
                 }
             }
+        }
+    }
+}
+
+module gnal_100ft_spiral_quarter (quarter = "a") {
+    LEN = 220;
+
+    module notch (NOTCH = 5) {
+        cube([NOTCH, NOTCH, 5], center = true);
+        translate([0, 0, (5 / 2) + (1 / 2)]) rotate([0, 0, 45]) cylinder(r1 = NOTCH / 1.4, r2 = 0.1, h = 1, center = true, $fn = 4);
+    }
+    
+    module quarter () {
+        NOTCH = 3;
+        NOTCH_H = -5;
+        NOTCHES = 7;
+        OFFSET = 60;
+        difference () {
+            cube([LEN, LEN, LEN], center = true);
+            for (i = [0 : NOTCHES - 1]) {
+                translate([OFFSET - (i * (LEN / NOTCHES)), -(LEN / 2), NOTCH_H]) rotate([0, 0, 45]) notch(NOTCH);
+            }
+        }
+        for (i = [0 : NOTCHES - 2]) {
+            translate([-(LEN / 2), OFFSET - (i * (LEN / NOTCHES)), NOTCH_H]) rotate([0, 0, 45]) notch(NOTCH);
+        }
+    }
+
+    intersection () {
+        rotate([0, 0, 45]) gnal_100ft_spiral(quarter = true);
+        if (quarter == "a") {
+            rotate([0, 0, 0]) translate([LEN / 2, LEN / 2, 0]) quarter();
+        } else if (quarter == "b") {
+            rotate([0, 0, 90]) translate([LEN / 2, LEN / 2, 0]) quarter();
+        } else if (quarter == "c") {
+            rotate([0, 0, 180]) translate([LEN / 2, LEN / 2, 0]) quarter();
+        } else if (quarter == "d") {
+            rotate([0, 0, 270]) translate([LEN / 2, LEN / 2, 0]) quarter();
         }
     }
 }
@@ -239,6 +281,14 @@ PART="spiral";
 
 if (PART == "spiral") {
     gnal_100ft_spiral();
+} else if (PART == "quarter_a") {
+    gnal_100ft_spiral_quarter("a");
+} else if (PART == "quarter_b") {
+    gnal_100ft_spiral_quarter("b");
+} else if (PART == "quarter_c") {
+    gnal_100ft_spiral_quarter("c");
+} else if (PART == "quarter_d") {
+    gnal_100ft_spiral_quarter("d");
 } else if (PART == "top") {
     gnal_100ft_top();
 } else if (PART == "spacer") {
