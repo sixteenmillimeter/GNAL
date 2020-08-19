@@ -34,7 +34,7 @@ IMAGE_PLACEHOLDER
 * [Top](stl/50ft_v3/gnal_50ft_top.stl)
 * [Top Spacer](stl/50ft_v3/gnal_50ft_spacer.stl)
 * [Bottom Spiral Insert S8](stl/50ft_v3/gnal_50ft_insert_s8.stl)
-* [Bottom Spiral Insert 16mm]((stl/50ft_v3/gnal_50ft_insert_16.stl)
+* [Bottom Spiral Insert 16mm](stl/50ft_v3/gnal_50ft_insert_16.stl)
 * [Bottom Spacer 16mm](stl/50ft_v3/gnal_50ft_spacer_16.stl)
 * [Spindle Top](stl/50ft_v3/gnal_50ft_spindle_top.stl)
 * [Spindle Bottom](stl/50ft_v3/gnal_50ft_spindle_bottom.stl)
@@ -292,7 +292,7 @@ Consider this comparison of just the 50ft spirals (top spiral from V1).
 
 Render times have gone down dramatically.
 The volume has stayed consistent with major changes in geometry (between V1 and V2).
-The number of facets has reduced to about 30% of the V1 and V2 spirals.
+The file size of the V3 spiral has reduced to about 30% of the V1 and V2 spirals and the facet count remains roughly the same.
 
 
 ## License
