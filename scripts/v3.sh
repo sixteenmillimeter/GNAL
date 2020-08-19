@@ -9,7 +9,7 @@ DIST=./stl
 IMG=./img
 
 NOTES=./notes/${V}.csv
-FILES=( "spacer" "top" "spiral" "quarter_a" "quarter_b" "quarter_c" "quarter_d" "insert_s8" "insert_16" "spacer_16" )
+FILES=( "spindle_top" "spindle_bottom" "spacer" "top" "spiral" "quarter_a" "quarter_b" "quarter_c" "quarter_d" "insert_s8" "insert_16" "spacer_16" )
 SIZES=( "50ft" "100ft" ) 
 
 mkdir -p $DIST

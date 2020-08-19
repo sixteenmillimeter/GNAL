@@ -299,4 +299,8 @@ if (PART == "spiral") {
     gnal_spiral_bottom_insert_16();
 } else if (PART == "spacer_16") {
     gnal_spacer_16();
+} else if (PART == "spindle_top") {
+    gnal_spindle_top();
+} else if (PART == "spindle_bottom") {
+    gnal_spindle_bottom();
 }
