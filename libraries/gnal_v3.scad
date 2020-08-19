@@ -15,6 +15,8 @@ include <./Triangles.scad>;
  * metric_thread (diameter=10, pitch=1.5, thread_size = 1.6, length=LEN);
  */
 
+FINE = 200;
+
 OD = 10 + .5;
 PITCH = 1.5;
 THREAD = 1.6;

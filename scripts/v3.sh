@@ -9,7 +9,9 @@ DIST=./stl
 IMG=./img
 
 NOTES=./notes/${V}.csv
-FILES=( "spindle_top" "spindle_bottom" "spacer" "top" "spiral" "quarter_a" "quarter_b" "quarter_c" "quarter_d" "insert_s8" "insert_16" "spacer_16" )
+#"quarter_a" "quarter_b" "quarter_c" "quarter_d"
+#quarter pieces not rendering properly
+FILES=( "spindle_bottom" "spindle_top" "spacer" "top" "spiral" "insert_s8" "insert_16" "spacer_16" )
 SIZES=( "50ft" "100ft" ) 
 
 mkdir -p $DIST
@@ -40,9 +42,10 @@ do
 		
 		end=`date +%s`
 		runtime=$((end-start))
-		hash=`sha256sum "$stl" | awk '{ print $1 }'`
+
 		fileSize=`wc -c < "$stl"`
 		fileSize=`echo $fileSize | xargs`
+
 		if ! [ -x "$(command -v admesh)" ]; then
 			facets="N/A"
 			volume="N/A"
@@ -54,12 +57,15 @@ do
 				newSize=`wc -c < "$stl"`
 				newSize=`echo $newSize | xargs`
 				percent=`echo "scale=1;($newSize/$fileSize)*100" | bc`
+				fileSize="${newSize}"
 				echo "Binary conversion created STL file ${percent}% of original"
 			fi
 			ao=`admesh -c "$stl"`
 			facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
 			volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
 		fi
+
+		hash=`sha256sum "$stl" | awk '{ print $1 }'`
 
 		line="${VERSION},${CPU},$stl,$hash,$fileSize,$srchash,$srcsize,$facets,$volume,$runtime"
 		echo "$line" >> $NOTES
