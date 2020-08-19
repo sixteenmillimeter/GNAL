@@ -4,7 +4,7 @@ Free and open source processing system for 16mm and Super8 film
 
 IMAGE_PLACEHOLDER
 
-Want to buy one?
+Would you like to buy one?
 
 # [Email me](mailto:gnal@sixteenmillimeter.com)
 
@@ -190,6 +190,7 @@ This version of the spiral must be printed with supports. The spirals themselves
 #### Benchmarks
 
 Rendered using OpenSCAD version 2019.05 on a 2.2 GHz Core i7 (I7-4770HQ) chip running macOS 10.14.
+
 | Model | Size (bytes) | Facets | Volume (mm<sup>3</sup>) | Render Time (sec) |
 |-------|--------------|--------|-------------------------|-------------------|
 |gnal_50ft_spacer.stl|991452|5736|2888.155029|68|
@@ -223,7 +224,22 @@ Les was right. This reduced the several hours render time to 1-2 hours, which wo
 
 #### Benchmarks
 
-Rendered using OpenSCAD version 2019.05 on a 2.2 GHz Core i7 (I7-4770HQ) chip running macOS 10.14.
+Rendered using OpenSCAD version 2020.01.17 on a 3.2 GHz Core i5 (I5-4460) chip running Ubuntu 18.04.
+
+| Model | Size (bytes) | Facets | Volume (mm<sup>3</sup>) | Render Time (sec) |
+|-------|--------------|--------|-------------------------|-------------------|
+|gnal_50ft_spacer.stl|991452|5736|2888.150879|22|
+|gnal_50ft_top.stl|2132181|12624|57937.210938|73|
+| *gnal_50ft_spiral.stl* |34628449|193450|178181.250000| **2341** |
+|gnal_50ft_insert_s8.stl|5228272|27230|3493.560303|97|
+|gnal_50ft_insert_16.stl|7922994|41426|4664.952637|155|
+|gnal_50ft_spacer_16.stl|561267|3272|4015.912109|19|
+|gnal_100ft_spacer.stl|991452|5736|2888.152100|23|
+|gnal_100ft_top.stl|3302563|19552|102590.812500|118|
+| *gnal_100ft_spiral.stl* |59279238|330000|345431.531250| **4542** |
+|gnal_100ft_insert_s8.stl|5228272|27230|3493.559326|99|
+|gnal_100ft_insert_16.stl|7922994|41426|4664.937500|160|
+|gnal_100ft_spacer_16.stl|535264|3112|3964.118164|17|
 
 -----
 
@@ -235,6 +251,29 @@ The goals of V3 are to **greatly** optimize the spiral generation code for speed
 This version will also contain a 4x reel stacking feature so that all models can be stacked with 3 spiral reels and a top piece. That will give 200ft capacity to the 50ft model and 400ft capacity to the 100ft model.
 
 
+#### Benchmarks
+
+Rendered using OpenSCAD version 2019.05 on a 2.2 GHz Core i7 (I7-4770HQ) chip running macOS 10.14.
+
+| Model | Size (bytes) | Facets | Volume (mm<sup>3</sup>) | Render Time (sec) |
+|-------|--------------|--------|-------------------------|-------------------|
+|gnal_50ft_spindle_bottom.stl|3760384|75206|4134.075684|1257|
+|gnal_50ft_spindle_top.stl|6915384|138306|22229.804688|1278|
+|gnal_50ft_spacer.stl|286884|5736|2888.143311|64|
+|gnal_50ft_top.stl|1104884|22096|57933.828125|577|
+| *gnal_50ft_spiral.stl* |10841384|216826|172470.609375| **5** |
+|gnal_50ft_insert_s8.stl|1361584|27230|3493.514893|279|
+|gnal_50ft_insert_16.stl|2071384|41426|4664.784180|413|
+|gnal_50ft_spacer_16.stl|602084|12040|4019.471191|258|
+|gnal_100ft_spindle_bottom.stl|3760384|75206|4134.063965|1253|
+|gnal_100ft_spindle_top.stl|6979184|139582|22229.984375|15013|
+|gnal_100ft_spacer.stl|286884|5736|2888.145996|92|
+|gnal_100ft_top.stl|1620084|32400|102557.906250|1068|
+| *gnal_100ft_spiral.stl* |21469784|429394|332991.468750|**10**|
+|gnal_100ft_insert_s8.stl|1361584|27230|3493.547852|301|
+|gnal_100ft_insert_16.stl|2071384|41426|4665.019531|462|
+|gnal_100ft_spacer_16.stl|755684|15112|4019.489746|379|
+
 
 <a name="benchmarks"></a>
 ## Benchmarks
@@ -242,6 +281,18 @@ This version will also contain a 4x reel stacking feature so that all models can
 In the process of publishing this repository I started questioning claims I was making in this readme. Throughout the development of this processing reel I've been plagued by long render times. As a sanity check, I went through my personal development history on this project and produced 7 distinct spiral generation scripts that I ran through a series of tests to benchmark the render performance, total volume generated and number of facets produced. Render time was the primary metric that concerned me, but I considered the other important in comparing these different approaches.
 
 In the `spiral` directory you will find each individual script in a `spiral_#.scad` format. The `scripts/benchmark.sh` script will render spirals at various resolutions and rotation counts and records the results in `notes/benchmark.csv`.
+
+Consider this comparison of just the 50ft spirals (top spiral from V1).
+
+| # | Model | Size (bytes) | Facets | Volume (mm<sup>3</sup>) | Render Time (sec) |
+|---|-------|--------------|--------|-------------------------|-------------------|
+| V1 | gnal_50ft_spiral_top.stl |36509561 | 214404 | 120299.773438 | 12249 |
+| V2 | gnal_50ft_spiral.stl     |34628449 | 193450 | 178181.250000 |  2341 |
+| V3 | gnal_50ft_spiral.stl     |10841384 | 216826 | 172470.609375 |     5 |
+
+Render times have gone down dramatically.
+The volume has stayed consistent with major changes in geometry (between V1 and V2).
+The number of facets has reduced to about 30% of the V1 and V2 spirals.
 
 
 ## License
