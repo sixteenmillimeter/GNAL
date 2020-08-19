@@ -82,6 +82,7 @@ do
 		else
 			openscad -o "$png" --imgsize=1920,1080 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
 		fi
-		
 	done
+	# zip all
+	zip -r "./releases/gnal_${SIZE}_v3.zip" "./stl/${SIZE}_v3"
 done
