@@ -38,6 +38,16 @@ do
 			facets="N/A"
 			volume="N/A"
 		else
+			firstline=`head -n 1 "$stl"`
+			if [[ $firstline == solid* ]]; then
+				#convert from ascii to binary
+				admesh -c -b "$stl" "$stl"
+				newSize=`wc -c < "$stl"`
+				newSize=`echo $newSize | xargs`
+				percent=`echo "scale=1;($newSize/$fileSize)*100" | bc`
+				fileSize="${newSize}"
+				echo "Binary conversion created STL file ${percent}% of original"
+			fi
 			ao=`admesh -c "$stl"`
 			facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
 			volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
