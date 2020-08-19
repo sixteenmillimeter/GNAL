@@ -11,7 +11,10 @@ do
 	for SIZE in "${SIZES[@]}"
 	do
 		:
-		echo  "./stl/${SIZE}_${VERSION} -> ./releases/gnal_${SIZE}_${VERSION}.zip"
-		zip -r "./releases/gnal_${SIZE}_${VERSION}.zip" "./stl/${SIZE}_${VERSION}/*.stl"
+		echo  "./stl/${SIZE}_${VERSION} -> ./releases/gnal_${SIZE}_${VERSION} archives"
+		# create zip archive and skip dotfiles
+		zip -x ".*" -r "./releases/gnal_${SIZE}_${VERSION}.zip" "./stl/${SIZE}_${VERSION}/*.stl"
+		# create tar.gz archive and skip dotfiles
+		tar --exclude=".*" -czvf "./releases/gnal_${SIZE}_${VERSION}.tar.gz" "./stl/${SIZE}_${VERSION}/"
 	done
 done 
