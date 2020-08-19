@@ -84,5 +84,7 @@ do
 		fi
 	done
 	# zip all
-	zip -r "./releases/gnal_${SIZE}_v3.zip" "./stl/${SIZE}_v3"
+	zip -x ".*" -r "./releases/gnal_${SIZE}_v3.zip" "./stl/${SIZE}_v3/"
+	# tar all
+	tar --exclude=".*" -czvf "./releases/gnal_${SIZE}_v3.tar.gz" "./stl/${SIZE}_v3/"
 done
