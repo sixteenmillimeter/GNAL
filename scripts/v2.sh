@@ -20,7 +20,7 @@ for SIZE in "${SIZES[@]}"
 do
 	:
 	mkdir -p "${DIST}/${SIZE}_${V}"
-	scad="${SIZE}_${V}/gnal_${SIZE}.scad"
+	scad="./scad/${SIZE}_${V}/gnal_${SIZE}.scad"
 	srchash=`sha256sum "${scad}" | awk '{ print $1 }'`
 	srcsize=`wc -c < "${scad}"`
 	srcsize=`echo $srcsize | xargs`

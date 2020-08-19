@@ -17,15 +17,15 @@ for SIZE in "${SIZES[@]}"
 do
 	:
 	mkdir -p "${DIST}/${SIZE}_v1"
-	srchash=`sha256sum "${SIZE}_v1/gnal_${SIZE}.scad" | awk '{ print $1 }'`
-	srcsize=`wc -c < "${SIZE}_v1/gnal_${SIZE}.scad"`
+	srchash=`sha256sum "./scad/${SIZE}_v1/gnal_${SIZE}.scad" | awk '{ print $1 }'`
+	srcsize=`wc -c < "./scad/${SIZE}_v1/gnal_${SIZE}.scad"`
 	srcsize=`echo $srcsize | xargs`
 
 	for FILE in "${FILES[@]}"
 	do
 	   : 
 	    stl="${DIST}/${SIZE}_v1/gnal_${SIZE}_${FILE}.stl"
-	    scad="${SIZE}_v1/${FILE}.scad"
+	    scad="./scad/${SIZE}_v1/${FILE}.scad"
 	    echo "$scad"
 	    start=`date +%s`
 		openscad -o "$stl" "$scad"
