@@ -28,7 +28,7 @@ Good question!
 
 IMAGE_PLACEHOLDER
 
-[All 50ft v3 STL files in a .zip]()
+#### [All 50ft v3 STL files in a .zip]()
 
 * [Spiral](stl/50ft_v3/gnal_50ft_spiral.stl)
 * [Top](stl/50ft_v3/gnal_50ft_top.stl)
@@ -43,7 +43,7 @@ IMAGE_PLACEHOLDER
 
 IMAGE_PLACEHOLDER
 
-[All 100ft v3 STL files in a .zip]()
+#### [All 100ft v3 STL files in a .zip]()
 
 * [Spiral](stl/100ft_v3/gnal_100ft_spiral.stl)
 * [Top](stl/100ft_v3/gnal_100ft_top.stl)
@@ -60,7 +60,7 @@ IMAGE_PLACEHOLDER
 
 IMAGE_PLACEHOLDER
 
-[All 50ft v2 STL files in a .zip]()
+#### [All 50ft v2 STL files in a .zip]()
 
 * [Spiral](stl/50ft_v2/gnal_50ft_spiral.stl)
 * [Top](stl/50ft_v2/gnal_50ft_top.stl)
@@ -73,7 +73,7 @@ IMAGE_PLACEHOLDER
 
 IMAGE_PLACEHOLDER
 
-[All 100ft v2 STL files in a .zip]()
+#### [All 100ft v2 STL files in a .zip]()
 
 * [Spiral](stl/100ft_v2/gnal_100ft_spiral.stl)
 * [Top](stl/100ft_v2/gnal_100ft_top.stl)
@@ -87,10 +87,9 @@ IMAGE_PLACEHOLDER
 
 **50ft/15m**
 
-
 IMAGE_PLACEHOLDER
 
-[All 50ft v1 STL files in a .zip]()
+#### [All 50ft v1 STL files in a .zip]()
 
 * [Bottom Spiral](stl/50ft_v1/gnal_50ft_bottom_spiral.stl)
 * [Top Spiral](stl/50ft_v1/gnal_50ft_top_spiral.stl)
@@ -99,7 +98,7 @@ IMAGE_PLACEHOLDER
 
 **100ft/30m**
 
-[All 100ft v1 STL files in a .zip]()
+#### [All 100ft v1 STL files in a .zip]()
 
 * [Bottom Spiral](stl/100ft_v1/gnal_100ft_bottom_spiral.stl)
 * [Top Spiral](stl/100ft_v1/gnal_100ft_top_spiral.stl)
@@ -195,8 +194,8 @@ Rendered using OpenSCAD version 2019.05 on a 2.2 GHz Core i7 (I7-4770HQ) chip ru
 |-------|--------------|--------|-------------------------|-------------------|
 |gnal_50ft_spacer.stl|991452|5736|2888.155029|68|
 |gnal_50ft_top.stl|2132181|12624|57936.746094|233|
-|gnal_50ft_spiral_top.stl|36509561|214404|120299.773438|12249|
-|gnal_50ft_spiral_bottom.stl|36606204|214970|121519.937500|13698|
+| *gnal_50ft_spiral_top.stl* |36509561|214404|120299.773438| **12249** |
+| *gnal_50ft_spiral_bottom.stl* |36606204|214970|121519.937500| **13698** |
 |gnal_100ft_spacer.stl|991452|5736|2888.149658|74|
 |gnal_100ft_top.stl|3302563|19552|102590.546875|477|
 |gnal_100ft_spiral_top.stl|92423369|542836|223602.078125|89137|
