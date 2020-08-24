@@ -65,7 +65,7 @@ module gnal_50ft_spiral (spiral_count = 40, od = 215.75) {
     translate([0, 0, -.1]) {
         rotate([0, 0, -90]) {
             difference () {
-                film_guide(spiral_count, od);
+                film_guide(spiral_count);
                 for (i = [0 : SPOKE_COUNT]) {
                     rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT) ]) {
                         translate([(spoke_len / 4) + (48 / 2), 0, -3.6]) triangle_void(); 
@@ -73,7 +73,7 @@ module gnal_50ft_spiral (spiral_count = 40, od = 215.75) {
                 }
                 for (i = [0 : SPOKE_COUNT * 2]) {
                     rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 2)) ]) {
-                       translate([(outer_d / 2) - (spoke_2_len / 2) + 1 , 0, -3.6]) triangle_void_2(); 
+                       translate([(outer_d / 2) - (spoke_2_len / 2) + 1 , 0, -3.6]) triangle_void_2(i); 
                     }
                 }
             }

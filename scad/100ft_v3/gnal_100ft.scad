@@ -101,35 +101,6 @@ module gnal_100ft_spiral (spiral_count = 60, od = 298.75, quarter = false) {
         }
     }
 
-    //Triangular voids
-    /*
-    translate([0, 0, -.1]) {
-        rotate([0, 0, -90]) {
-            difference () {
-                film_guide(spiral_count);
-                for (i = [0 : SPOKE_COUNT - 1]) {
-                    rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT) ]) {
-                        translate([(83 / 4) + (48 / 2), 0, -3.6]) triangle_void(); 
-                    }
-                }
-                for (i = [0 : (SPOKE_COUNT * 2) - 1]) {
-                    rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 2)) ]) {
-                       translate([(258 / 2) - (spoke_2_len / 2) + 1 , 0, -3.6 ]) triangle_void_2(i); 
-                    }
-                }
-                for (i = [0 : (SPOKE_COUNT * 4) - 1]) {
-                    rotate([0, 0, (i + 0.5) * (360 / (SPOKE_COUNT * 4)) ]) {
-                        if (i % 2 == 0) {
-                            translate([(outer_d / 2) - (spoke_3_len / 2) + 1 , 0.3, -3.6]) triangle_void_3(i); 
-                        } else {
-                            translate([(outer_d / 2) - (spoke_3_len / 2) + 1 , -0.3, -3.6]) triangle_void_3(i); 
-                        }
-                    }
-                }
-            }
-        }
-    }
-    */
     translate([0, 0, -.1]) {
         rotate([0, 0, -90]) {
             film_guide2(spiral_count);

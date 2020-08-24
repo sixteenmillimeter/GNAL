@@ -306,13 +306,14 @@ module gnal_spacer_16 () {
 /**
  * Spokes
  **/
-
+ 
 module triangle_void () {
-    length = (81 / 2) - 9;
+    length = (81 / 2) - 9 + 10;
     width = 12;
     height = 4.5 + 2.7;
     ANGLE_A = 34.8;
     ANGLE_B = 180 / SPOKE_COUNT;
+    ANGLE_C = 20;
     difference () {
         translate([-1, 0, 0]) cube([length, width, height], center = true);
         translate([0, 10.3, 0]) rotate([0, 0, ANGLE_B]) cube([length * 2, width, height + 1], center = true);   
@@ -320,40 +321,57 @@ module triangle_void () {
 
         translate([0, 10.3, -.7]) rotate([ANGLE_A, 0, 0]) cube([length *2, width, height * 10], center = true);   
         translate([0, -10.3, -.7]) rotate([-ANGLE_A, 0, 0]) cube([length *2, width, height * 10], center = true);
+
+        translate([(length / 2) + 2, 0, 0]) rotate([0, 0, ANGLE_C]) cube([10, width * 2, height + 1], center = true);
     }  
+    
 }
 
-module triangle_void_2 () {
-    length = 43 - 8;
+module triangle_void_2 (i) {
+    length = 43 - 8 + 12;
     width = 12;
     height = 4.5 + 2.7;
     ANGLE_A = 34.8;
     ANGLE_B = 90 / SPOKE_COUNT;
+    ANGLE_C = 20;
     angle_w = 10.2;
+
     difference () {
-        translate([-1, 0, 0]) cube([length, width, height], center = true);
+        translate([-3, 0, 0]) cube([length, width, height], center = true);
         translate([0, angle_w, 0]) rotate([0, 0, ANGLE_B]) cube([length *2, width, height * 10], center = true);   
         translate([0, -angle_w, 0]) rotate([0, 0, -ANGLE_B]) cube([length *2, width, height * 10], center = true);
 
         translate([0, angle_w, -.7]) rotate([ANGLE_A, 0, 0]) cube([length *2, width, height * 10], center = true);   
         translate([0, -angle_w, -.7]) rotate([-ANGLE_A, 0, 0]) cube([length *2, width, height * 10], center = true);
+        if (i % 2 == 0) {
+            translate([-(length / 2) - 5, 0, 0]) rotate([0, 0, ANGLE_C]) cube([10, width * 2, height + 1], center = true);
+        } else {
+            translate([-(length / 2) - 7, 0, 0]) rotate([0, 0, ANGLE_C]) cube([10, width * 2, height + 1], center = true);
+        }
+        translate([(length / 2) + 1, 0, 0]) rotate([0, 0, -ANGLE_C]) cube([10, width * 2, height + 1], center = true);;
     }  
 }
 
-module triangle_void_3 () {
-    length = 32;
+module triangle_void_3 (i) {
+    length = 32 + 10;
     width = 10;
     height = 4.5 + 2.7;
     ANGLE_A = 31;
     ANGLE_B = 45 / SPOKE_COUNT;
+    ANGLE_C = 20;
     angle_w = 7.8;
     difference () {
-        translate([-1, 0, 0]) cube([length, width, height], center = true);
+        translate([-3, 0, 0]) cube([length, width, height], center = true);
         translate([0, angle_w, 0]) rotate([0, 0, ANGLE_B]) cube([length *2, width, height * 10], center = true);   
         translate([0, -angle_w, 0]) rotate([0, 0, -ANGLE_B]) cube([length *2, width, height * 10], center = true);
 
         translate([0, angle_w, -.7]) rotate([ANGLE_A, 0, 0]) cube([length *2, width, height * 10], center = true);   
         translate([0, -angle_w, -.7]) rotate([-ANGLE_A, 0, 0]) cube([length *2, width, height * 10], center = true);
+        if (i % 2 == 0) {
+            translate([-(length / 2) - 7, 0, 0]) rotate([0, 0, -ANGLE_C]) cube([10, width * 2, height + 1], center = true);
+        } else {
+            translate([-(length / 2) - 5, 0, 0]) rotate([0, 0, -ANGLE_C]) cube([10, width * 2, height + 1], center = true);
+        }
     }  
 }
 
