@@ -43,9 +43,9 @@ function calcIncrement(spacing, fn) = spacing / fn;
  * 8418 vectors at 60 rotations. This is an edge case, only appearing in OpenSCAD
  * 2019.05 (and maybe earlier), but should be explored.
  **/
-module spiral (rotations = 40, start_d = 48, spacing = 2.075, fn) {
+module spiral (rotations = 40, start_d = 48, spacing = 2.075, bottom = -7.1, fn) {
 
-    bottom = -7.1;
+    //bottom = -7.1;
     w = 1.4;
     top_w = .8;
     top_offset = (w - top_w);
