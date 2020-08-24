@@ -236,4 +236,10 @@ if (PART == "spiral") {
     gnal_spindle_top();
 } else if (PART == "spindle_bottom") {
     gnal_spindle_bottom();
+} else if (PART == "spiral_test") {
+    difference () {
+        gnal_50ft_spiral();
+        translate([125, 0, 0]) cube([250, 250, 100], center = true);
+        rotate([0, 0, 30]) translate([-125, 0, 0]) cube([250, 250, 100], center = true);
+    }
 }
