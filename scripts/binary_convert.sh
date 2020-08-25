@@ -16,7 +16,7 @@ do
 		FILES=./stl/${SIZE}_${VERSION}/*.stl
 		for stl in $FILES
 		do
-			fileSize=`wc -c < "$stl"`
+			fileSize=`bash ./scripts/size.sh "$stl"`
 			fileSize=`echo $newSize | xargs`
 
 			firstline=`head -n 1 "$stl"`
@@ -24,7 +24,7 @@ do
 				echo "Converting $stl to binary..."
 				#convert from ascii to binary
 				admesh -c -b "$stl" "$stl"
-				newSize=`wc -c < "$stl"`
+				newSize=`bash ./scripts/size.sh "$stl"`
 				newSize=`echo $newSize | xargs`
 				percent=`echo "scale=1;($newSize/$fileSize)*100" | bc`
 				#fileSize="${newSize}"
