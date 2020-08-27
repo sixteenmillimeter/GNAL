@@ -14,7 +14,7 @@ Would you like to buy one?
 
 GNAL stands for Gnal's Not A Lomo because it isn't. While inspired by a certain motion picture development tank the goal of this project is to create a free, open-source, modification-friendly processing system for small format movie film with the added constraint that it be 3D printable or otherwise able to be fabricated on a small scale. All source code and STL files for printing will be made available in this repository.
 
-GNAL is built using [OpenSCAD](https://www.openscad.org/). OpenSCAD is a free, open-source CAD program that uses scripts to generate objects. Building this project in OpenSCAD serves two purposes: it uses only free and open source software to create the GNAL processing spirals and it future-proofs the design by preserving its dimensions in human-readable text format. Even if OpenSCAD were to disappear tomorrow (and we sincerely hope it doesn't) it would still be possible to recreate the GNAL models in another CAD program just by reading the code and reproducing the measurements.
+GNAL is built using [OpenSCAD](https://www.openscad.org/). OpenSCAD is a free, open-source CAD program that uses scripts to generate objects. Building this project in a scripting language serves two purposes: it uses only free and open source software to create the GNAL processing spirals and it future-proofs the design by preserving its dimensions in human-readable text format. Even if OpenSCAD were to disappear tomorrow (and we sincerely hope it doesn't) it would still be possible to recreate the GNAL models in another CAD program just by reading the code and reproducing the measurements.
 
 While the files are all free, open-source and readily available to download; actually printing them can be a challenge. Please read through this README for information about materials, printers and troubleshooting your prints.
 
@@ -112,7 +112,7 @@ The diameter of these spiral reels limit the printers that are capable of making
 
 **50ft/15m Capable Printers**
 
-* [PrintrBot Metal Plus](https://www.adafruit.com/product/2302) **Discontinued** **Tested**
+* [PrintrBot Metal Plus](https://www.adafruit.com/product/2302)  **Tested** **[Discontinued]**
 * [LulzBot TAZ 6](https://www.lulzbot.com/store/printers/lulzbot-taz-6) Untested
 * [aniwaa.com Search: Printers with print bed > 225mm x 225mm](https://www.aniwaa.com/comparison/3d-printers/?sort=price&order=asc&filter_search&filter_price_minimum&filter_price_maximum&filter_build_size_width=225&filter_build_size_height=225&filter_build_size_depth)
 
