@@ -173,7 +173,7 @@ Here is an example of the key settings used during development while printing wi
 
 This is a fraction of the overall settings used by Cura, but they note some of the key features that were changed from the default profile for PETG and my printer.
 
-To read more about developing and modifying the GNAL, check out the [development notes](docs/development.md)
+To read more about developing and modifying the GNAL, check out the [development notes](docs/).
 
 -----
 
