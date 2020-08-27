@@ -28,9 +28,9 @@ Good question!
 
 ## V3 STL Files
 
-**50ft/15m**
+![V3 50ft spiral top and bottom](/img/gnal_50ft_v3_spiral_render.jpg)
 
-IMAGE_PLACEHOLDER
+**50ft/15m**
 
 #### [All 50ft v3 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v3.0/gnal_50ft_v3.zip)
 
@@ -45,8 +45,6 @@ IMAGE_PLACEHOLDER
 
 **100ft/30m**
 
-IMAGE_PLACEHOLDER
-
 #### [All 100ft v3 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v3.0/gnal_100ft_v3.zip)
 
 * [Spiral](stl/100ft_v3/gnal_100ft_spiral.stl)
@@ -60,9 +58,9 @@ IMAGE_PLACEHOLDER
 
 ## V2 STL Files
 
-**50ft/15m**
+![V2 50ft spiral top and bottom](/img/gnal_50ft_v2_spiral_render.jpg)
 
-IMAGE_PLACEHOLDER
+**50ft/15m**
 
 #### [All 50ft v2 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v2.0/gnal_50ft_v2.zip)
 
@@ -75,8 +73,6 @@ IMAGE_PLACEHOLDER
 
 **100ft/30m**
 
-IMAGE_PLACEHOLDER
-
 #### [All 100ft v2 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v2.0/gnal_100ft_v2.zip)
 
 * [Spiral](stl/100ft_v2/gnal_100ft_spiral.stl)
@@ -88,9 +84,9 @@ IMAGE_PLACEHOLDER
 
 ## V1 STL Files
 
-**50ft/15m**
+![V1 50ft spiral top and bottom](/img/gnal_50ft_v1_spiral_render.jpg)
 
-IMAGE_PLACEHOLDER
+**50ft/15m**
 
 #### [All 50ft v1 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v1.0/gnal_50ft_v1.zip)
 
