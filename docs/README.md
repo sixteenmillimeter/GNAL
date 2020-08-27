@@ -28,6 +28,7 @@ The `scripts/benchmark.sh` script will run various tests on the different approa
 ## Version notes
 
 <a name="v1"></a>
+
 ### V1
 
 Intended to be mostly compatible with existing processing spirals with some caveats. A spacer that is typically threaded has been replaced by a friction fit part so they are not interchangeable.
@@ -67,9 +68,10 @@ Rendered using OpenSCAD version 2019.05 on a 2.2 GHz Core i7 (I7-4770HQ) chip ru
 |gnal_100ft_spiral_top.stl|92423369|542836|223602.078125|89137|
 |gnal_100ft_spiral_bottom.stl|N/A|N/A|N/A|N/A|
 
-
 -----
+
 <a name="v2"></a>
+
 ### V2
 
 This version aims to improve printability over the V1 model and reducing render time of the spiral. The biggest change to the physical structure of the design is the removal of overhangs from beneath the spiral film guide.
@@ -114,7 +116,7 @@ Rendered using OpenSCAD version 2020.01.17 on a 3.2 GHz Core i5 (I5-4460) chip r
 
 The goals of V3 are to **greatly** optimize the spiral generation code for speed and to restore the feature of the V1 spiral which maintains a consistent size of individual facets throughout the spiral even as the diameter changes. This will be considered a stable release candidate for publishing the project.
 
-Since the benchmarking process ([see below](#benchmarks)) was developed between V2 and V3, render times are optimized in this iteration of the project. The success of the `[scad/spiral/spiral_3.scad](spiral_3.scad)` approach stood out amongst the rest, so it was reworked into what exists in V3.
+Since the benchmarking process ([see below](#benchmarks)) was developed between V2 and V3, render times are optimized in this iteration of the project. The success of the [`spiral_3.scad`](scad/spiral/spiral_3.scad) approach stood out from the rest as fastest, so it was reworked into what exists in V3.
 
 The spiral itself is plotted in 2D with a relatively simple formula that is expressed in the OpenSCAD script through a number of in-line helper functions. It draws the position of various points along the spiral path and then uses the `path_extrude.scad` library to extrude a shape along those coordinates. This proves to be fast and efficient while not sacrificing any of the detail in the geometry.
 

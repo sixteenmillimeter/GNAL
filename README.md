@@ -1,6 +1,6 @@
 # GNAL
 
-Free and open source processing system for 16mm and Super8 film
+A free and open-source processing system for 16mm and Super8 film
 
 ![GNAL 50ft V3 all pieces](/img/gnal_50ft_v3.jpg)
 
@@ -155,11 +155,11 @@ Fused filament fabrication relies on the behavior of plastics at high heat to cr
 
 The first thing to consider when your prints are coming out warped off the print bed is whether or not your **material** is appropriate for this model. Check the [#material](material) section of this README for more information, but theres a chance if you are using PLA or ABS that large flat prints of this size are warping due to limitations with the material you are using. PETG has proven to warp far less in my own anecdotal experience and is the recommended material for this project.
 
-The thermal properties of the material you're printing are what leads to warping, so check if your printer is being set to the recommended **temperatures** on both the bed and extruder for the material you are using. Warping occurs consistently when a part cools too quickly and contracts while the rest of the part is still being printed. Avoid this by using an enclosure on your open-frame printer or by printing in a space with low air flow but still with appropriate ventilation for the material you use.
+The thermal properties of the material you're printing are what causes warping, so check if your printer is being set to the recommended **temperatures** on both the bed and extruder for the material and printer you are using. Warping occurs consistently when a section of a part cools too quickly and contracts while the rest of it is still being printed. Avoid this by using an enclosure on your open-frame printer or by printing in a space with low air movement but still with appropriate ventilation for the material you use.
 
 The **slicer** you use and the **settings** in its configuration will make a lot of difference in how your print comes out. During the development of this project [Cura](https://ultimaker.com/software/ultimaker-cura) is the slicer used most for test prints, however you might find that different software works best with your machine. The settings are important to test before you commit to a complete print of the spiral part. 
 
-Here is an example of the key settings used during development while printing with PETG.
+Here is an example of the important settings used during development while printing with PETG.
 
 |Setting|Value|
 |---|---|
@@ -169,7 +169,9 @@ Here is an example of the key settings used during development while printing wi
 |Infill|20%|
 |Print Speed|40 mm/s|
 
-This is a fraction of the overall settings used by Cura, but they note some of the key features that were changed from the default profile for PETG and my printer.
+This is a fraction of the overall settings that Cura has, but they note some of the key features that were changed from the default profile for PETG and my printer.
+
+-----
 
 To read more about developing and modifying the GNAL, check out the [development notes](docs/).
 
