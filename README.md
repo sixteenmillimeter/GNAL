@@ -2,9 +2,7 @@
 
 Free and open source processing system for 16mm and Super8 film
 
-<center>
 ![GNAL 50ft V3 all pieces](/img/gnal_50ft_v3.jpg)
-</center>
 
 Would you like to buy one?
 
