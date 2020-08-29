@@ -7,7 +7,7 @@
 5. [Version Notes - V3](#v3)
 6. [Benchmarks](#benchmarks)
 
-This project can be edited with only [OpenSCAD]() and the source files in the `scad/*_v1`, `scad/*_v2` or `scad/*_v3` directories which make reference to files from `scad/libraries`. 
+This project can be edited with only [OpenSCAD](https://www.openscad.org/downloads.html) and the source files in the `scad/*_v1`, `scad/*_v2` or `scad/*_v3` directories which make reference to files from `scad/libraries`. 
 If you wish to run the development scripts you should install the following dependencies.
 
 With just OpenSCAD, you can use scripts such as `scad/50ft_v3/gnal_50ft.scad` and export the different modules in [OFF](https://en.wikipedia.org/wiki/OFF_(file_format)), [AMF](https://en.wikipedia.org/wiki/Additive_manufacturing_file_format), [3MF](https://en.wikipedia.org/wiki/3D_Manufacturing_Format), [DXF](https://en.wikipedia.org/wiki/AutoCAD_DXF) or SVG (drawing) format. 
