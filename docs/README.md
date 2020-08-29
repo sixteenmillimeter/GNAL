@@ -145,7 +145,7 @@ The goals of V3 are to **greatly** optimize the spiral generation code for speed
 This will be considered a stable release candidate for publishing the project.
 
 Since the benchmarking process ([see below](#benchmarks)) was developed between V2 and V3, render times are optimized in this iteration of the project. 
-The success of the [`spiral_3.scad`](scad/spiral/spiral_3.scad) approach stood out from the rest as fastest, so it was reworked into what exists in V3.
+The success of the [`spiral_3.scad`](../scad/spiral/spiral_3.scad) approach stood out from the rest as fastest, so it was reworked into what exists in V3.
 
 The spiral itself is plotted in 2D with a relatively simple formula that is expressed in this OpenSCAD script through a number of in-line helper functions. 
 It draws the position of various points along the spiral path and then uses the `path_extrude.scad` library to extrude a shape along those coordinates. 
@@ -208,13 +208,13 @@ These example results are rendered using OpenSCAD 2020.05.23 on a 2.3 GHz Xeon G
 
 |Spiral Test|Diameter (mm)|Rotations| [$fn](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Other_Language_Features#$fa,_$fs_and_$fn) |Size (bytes)|Facets|Volume (mm<sup>3</sup>)|Time (sec)|
 |---|---|---|---|---|---|---|---|
-|[spiral_1.scad](scad/spiral/spiral_1.scad)|47|10|100|7409653|41064|5391.819336|209|
-|spiral_2.scad|47|10|100|15349620|86646|3639.441162|855|
-|spiral_3.scad|47|10|100|1336635|8004|3589.485596|0|
-|spiral_4.scad|47|10|100|1607691|9624|3830.134521|23|
-|spiral_5.scad|47|10|100|4711486|28188|3602.101562|8|
-|spiral_6.scad|47|10|100|4265376|25396|14337.455078|120|
-|spiral_7.scad|47|10|100|990006|5924|3581.499756|0|
+|[spiral_1.scad](../scad/spiral/spiral_1.scad)|47|10|100|7409653|41064|5391.819336|209|
+|[spiral_2.scad](../scad/spiral/spiral_2.scad)|47|10|100|15349620|86646|3639.441162|855|
+|[spiral_3.scad](../scad/spiral/spiral_3.scad)|47|10|100|1336635|8004|3589.485596|0|
+|[spiral_4.scad](../scad/spiral/spiral_4.scad)|47|10|100|1607691|9624|3830.134521|23|
+|[spiral_5.scad](../scad/spiral/spiral_5.scad)|47|10|100|4711486|28188|3602.101562|8|
+|[spiral_6.scad](../scad/spiral/spiral_6.scad)|47|10|100|4265376|25396|14337.455078|120|
+|[spiral_7.scad](../scad/spiral/spiral_7.scad)|47|10|100|990006|5924|3581.499756|0|
 
 As you can see, the different approaches lead to wildly different render times for the same test. 
 If you look at the complete results you will see many tests did not even finish due to exhausting memory on the machine or the process being killed by the cloud host (using too much CPU for too long, most likely). 
