@@ -189,8 +189,8 @@ Here is an example of the important settings used during development while print
 
 |Setting|Value|
 |---|---|
-|Extruder Temperature|240° C|
-|Bed Temperature|80° C|
+|Extruder Temperature|240<sup>o</sup> C|
+|Bed Temperature|80<sup>o</sup> C|
 |Generate Supports|Yes|
 |Infill|20%|
 |Print Speed|40 mm/s|
