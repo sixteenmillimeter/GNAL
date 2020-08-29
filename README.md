@@ -4,12 +4,15 @@ A free and open-source processing system for 16mm and Super8 film
 
 ![GNAL 50ft V3 all pieces](/img/gnal_50ft_v3.jpg)
 
-Would you like to buy one?
-
-# [Email me](mailto:gnal@sixteenmillimeter.com)
+1. [What's GNAL?](#what)
+2. [STL Files](#stls)
+3. [Printers](#printers)
+4. [Material](#material)
+5. [Troubleshooting](#troubleshooting)
+6. [Contact](#contact)
 
 ---
-
+<a name="what"></a>
 ## What's GNAL? Gnal's Not A Lomo!
 
 GNAL stands for Gnal's Not A Lomo because it isn't. While inspired by a certain motion picture development tank the goal of this project is to create a free, open-source, modification-friendly processing system for small format movie film with the added constraint that it be 3D printable or otherwise able to be fabricated on a small scale. All source code and STL files for printing will be made available in this repository.
@@ -25,7 +28,7 @@ Happy processing!
 Good question!
 
 ----
-
+<a name="stls"></a>
 ## V3 STL Files
 
 ![V3 50ft spiral top and bottom](/img/gnal_50ft_v3_spiral_render.jpg)
@@ -105,7 +108,7 @@ Good question!
 * [Spacer](stl/100ft_v1/gnal_100ft_spacer.stl)
 
 -----
-
+<a name="printers"></a>
 ## Printers
 
 The diameter of these spiral reels limit the printers that are capable of making this design. The 50ft/15m model is 225.71mm (8.88in) wide at the base and the 100ft/30m model is 299mm (11.77in) wide. 
@@ -136,7 +139,7 @@ Various manufacturers have published [safety data sheets](http://www.ilpi.com/ms
 [PLA](https://en.wikipedia.org/wiki/Polylactic_acid) is not recommended but this doesn't mean you can't get an acceptable result with it. The lack of endorsement comes from mostly anecdotal experience witnessing the wear and tear caused by exposure to water on PLA prints. Biodegradable and porous, PLA will wear down in the weakest parts first and on this model that would be the spiral. If you do not need your processing equipment to last a long time, you may find it acceptable. PLA stands for polylactic acid and is likely the most reactive material to use with photochemistry where pH is vital to maintain for consistent results.
 
 -----
-
+<a name="troubleshooting"></a>
 ## Troubleshooting
 
 Many, many issues were encountered during the development of this tool. Prints came out warped, failed midway during multi-day prints and had other mysterious ailments. I am by no means an expert but have built up months of experience trying to print these models on a variety of machines.
@@ -169,7 +172,13 @@ This is a fraction of the overall settings that Cura has, but they note some of 
 
 -----
 
+<a name="contact"></a>
+
 To read more about developing and modifying the GNAL, check out the [development notes](docs/).
+
+Had issues or success printing this? Interested in getting in contact?
+
+# [Email me](mailto:gnal@sixteenmillimeter.com)
 
 -----
 
