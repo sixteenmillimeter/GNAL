@@ -1,18 +1,20 @@
 # Development Notes
 
+1. [Dependencies](#dependencies)
+2. [Build Scripts](#scripts)
+3. [Version Notes - V1](#v1)
+4. [Version Notes - V2](#v2)
+5. [Version Notes - V3](#v3)
+6. [Benchmarks](#benchmarks)
+
 This project can be edited with only [OpenSCAD]() and the source files in the `scad/*_v1`, `scad/*_v2` or `scad/*_v3` directories which make reference to files from `scad/libraries`. 
 If you wish to run the development scripts you should install the following dependencies.
 
 With just OpenSCAD, you can use scripts such as `scad/50ft_v3/gnal_50ft.scad` and export the different modules in [OFF](https://en.wikipedia.org/wiki/OFF_(file_format)), [AMF](https://en.wikipedia.org/wiki/Additive_manufacturing_file_format), [3MF](https://en.wikipedia.org/wiki/3D_Manufacturing_Format), [DXF](https://en.wikipedia.org/wiki/AutoCAD_DXF) or SVG (drawing) format. 
 The CSG models can be [imported](https://wiki.freecadweb.org/OpenSCAD_CSG) into [FreeCAD](https://www.freecadweb.org/) and DXF models should be readable by AutoCAD and [QCAD](https://www.qcad.org/en/).
 
-1. Dependencies
-2. Build Scripts
-3. Version Notes - V1
-4. Version Notes - V2
-5. Version Notes - V3
-6. Benchmarks
-
+-----
+<a name="dependencies"></a>
 ### Dependencies
 
 * [Bash](https://www.gnu.org/software/bash/) - Available by default on Mac and Linux
@@ -20,12 +22,13 @@ The CSG models can be [imported](https://wiki.freecadweb.org/OpenSCAD_CSG) into 
 * [ADMesh](https://github.com/admesh/admesh)
 * (optional) [POV-Ray](http://www.povray.org/download/)
 
+<a name="scripts"></a>
 ### Build Scripts
 
 Running any of the build scripts scripts--`scripts/v1.sh`, `scripts/v2.sh` or `scripts/v3.sh`--will start an OpenSCAD build process of all components and will log stats about the resulting files and render times to `notes/v1.csv`,  `notes/v2.csv` or `notes/v3.csv`.
 
 Keep in mind that V1 and V2 compile times are extremely long and all scripts will use an entire CPU core at 100% utilization while rendering. 
-It's best to run these scripts in the background on a powerful machine or better yet, not at all. See the `stl` folder for pre-compiled STL files for 3D printing or the [releases page](/releases/latest) for .zip and .tar.gz archives of all versions.
+It's best to run these scripts in the background on a powerful machine or better yet, not at all. See the `stl` folder for pre-compiled STL files for 3D printing or the [releases page](https://github.com/sixteenmillimeter/GNAL/releases) for .zip and .tar.gz archives of all versions.
 
 These scripts will render STL files, PNG images of the files and capture metadata about the render process while doing so.
 
