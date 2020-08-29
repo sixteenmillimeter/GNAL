@@ -40,7 +40,7 @@ Good question!
 
 **50ft/15m**
 
-#### [All 50ft v3 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v3.0/gnal_50ft_v3.zip)
+#### [All 50ft v3 STL files in a .zip](https://links.sixteenmillimeter.com/mE4nkSm4)
 
 * [Spiral](stl/50ft_v3/gnal_50ft_spiral.stl)
 * [Top](stl/50ft_v3/gnal_50ft_top.stl)
@@ -53,7 +53,7 @@ Good question!
 
 **100ft/30m**
 
-#### [All 100ft v3 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v3.0/gnal_100ft_v3.zip)
+#### [All 100ft v3 STL files in a .zip](https://links.sixteenmillimeter.com/fbdwf3C8)
 
 * [Spiral](stl/100ft_v3/gnal_100ft_spiral.stl)
 * [Top](stl/100ft_v3/gnal_100ft_top.stl)
@@ -70,7 +70,7 @@ Good question!
 
 **50ft/15m**
 
-#### [All 50ft v2 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v2.0/gnal_50ft_v2.zip)
+#### [All 50ft v2 STL files in a .zip](https://links.sixteenmillimeter.com/vRPj4yTC)
 
 * [Spiral](stl/50ft_v2/gnal_50ft_spiral.stl)
 * [Top](stl/50ft_v2/gnal_50ft_top.stl)
@@ -81,7 +81,7 @@ Good question!
 
 **100ft/30m**
 
-#### [All 100ft v2 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v2.0/gnal_100ft_v2.zip)
+#### [All 100ft v2 STL files in a .zip](https://links.sixteenmillimeter.com/XRlnssjz)
 
 * [Spiral](stl/100ft_v2/gnal_100ft_spiral.stl)
 * [Top](stl/100ft_v2/gnal_100ft_top.stl)
@@ -96,7 +96,7 @@ Good question!
 
 **50ft/15m**
 
-#### [All 50ft v1 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v1.0/gnal_50ft_v1.zip)
+#### [All 50ft v1 STL files in a .zip](https://links.sixteenmillimeter.com/f67lQo2n)
 
 * [Bottom Spiral](stl/50ft_v1/gnal_50ft_bottom_spiral.stl)
 * [Top Spiral](stl/50ft_v1/gnal_50ft_top_spiral.stl)
@@ -105,7 +105,7 @@ Good question!
 
 **100ft/30m**
 
-#### [All 100ft v1 STL files in a .zip](https://github.com/sixteenmillimeter/GNAL/releases/download/v1.0/gnal_100ft_v1.zip)
+#### [All 100ft v1 STL files in a .zip](https://links.sixteenmillimeter.com/CVihrAr5)
 
 * [Bottom Spiral](stl/100ft_v1/gnal_100ft_bottom_spiral.stl)
 * [Top Spiral](stl/100ft_v1/gnal_100ft_top_spiral.stl)
