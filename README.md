@@ -20,11 +20,11 @@ While inspired by a certain motion picture development tank the goal of this pro
 All source code and STL files for printing will be made available in this repository.
 
 GNAL is built using [OpenSCAD](https://www.openscad.org/): a free, open-source CAD program that uses scripts to generate objects. 
-Building this project in a scripting language serves two purposes: it uses only free and open source software to create the GNAL processing spirals and it future-proofs the design by preserving its dimensions in human-readable text format. 
+Building this project in a scripting language serves two purposes: it uses only free and open source software to generate the GNAL processing spirals and it future-proofs the design by preserving its dimensions in human-readable text format. 
 Even if OpenSCAD were to disappear tomorrow (and we sincerely hope it doesn't) it would still be possible to recreate the GNAL models in another CAD program just by reading the code and reproducing the measurements.
 
 While the files are all free, open-source and readily available to download; actually printing them can be a challenge. 
-Please read through this README for information about materials, printers and troubleshooting your prints. Check out the 
+Please read through this README for information about materials, printers and troubleshooting your prints. Check out the [development notes](docs/) if you want to modify this project. 
 
 Happy processing!
 
