@@ -64,7 +64,7 @@ module gnal_50ft_spiral (spiral_count = 40, od = 215.75, quarter = false) {
     
     translate([0, 0, -.1]) {
         rotate([0, 0, -90]) {
-            film_guide2(spiral_count);
+            film_guide(spiral_count);
         }
     }
 }
@@ -182,11 +182,8 @@ module gnal_50ft_top () {
 
 FN = 200;
 $fn = FN;
-module film_guide (rotations = 40, id = 45.55 - .5, spacing = 2.075, bottom = -7.1) {
-	spiral(rotations, id, spacing, bottom, $fn);
-}
 
-module film_guide2 (rotations = 40, id = 45.55 - .5, spacing = 2.075, bottom = -2) {
+module film_guide (rotations = 40, id = 45.55 - .5, spacing = 2.075, bottom = -2) {
     spiral(rotations, id, spacing, bottom, $fn);
 }
 

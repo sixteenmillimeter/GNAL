@@ -9,8 +9,10 @@ DIST=./stl
 IMG=./img
 
 NOTES=./notes/${V}.csv
+
 #"quarter_a" "quarter_b" "quarter_c" "quarter_d"
 #quarter pieces not rendering properly
+
 FILES=( "spindle_bottom" "spindle_top" "spacer" "top" "spiral" "insert_s8" "insert_16" "spacer_16" )
 SIZES=( "50ft" "100ft" ) 
 
