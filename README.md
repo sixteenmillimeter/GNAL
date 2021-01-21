@@ -28,6 +28,13 @@ Please read through this README for information about materials, printers and tr
 
 Happy processing!
 
+## Other Spirals
+
+There has been a lot of development around 3D printed processing spirals and any projects will be linked here.
+If you find any, please share with the email address at the bottom of this README.
+
+* [Movie Film Spiral Developing Tank by mb_maker on Thingiverse](https://www.thingiverse.com/thing:4715086)
+
 ## Where's the tank?
 
 Good question!
