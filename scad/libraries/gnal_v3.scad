@@ -479,6 +479,12 @@ module gnal_spindle_bottom (ALT = false, HEX = false) {
     }  
 }
 
+module number_one () {
+    rotate([0, 45, 0]) cube([1, 6, 1], center = true);
+    translate([0, 6 / 2, 0]) rotate([45, 0, 0]) cube([2, 1, 1], center = true);
+    translate([0, -6 / 2, 0]) rotate([45, 0, 0]) cube([2, 1, 1], center = true);
+}
+
 module gnal_spindle_top () {
     D = 50;
     THICKNESS = 2.5;
@@ -531,6 +537,9 @@ module gnal_spindle_top () {
     translate([0, 0, -15]) {
         difference() {
             cylinder(r1 = HANDLE_BASE / 2, r2 = HANDLE_TOP / 2, h = HANDLE_H, $fn = FINE);
+            //text
+            translate([3 / 2, 0, 15 + 39.75]) number_one();
+            translate([-3 / 2, 0, 15 + 39.75]) number_one();
             //ring negative
             translate([0, 0, 31 + 14.5]) {
                 difference () {
@@ -627,9 +636,12 @@ module gnal_spindle_single () {
     //translate([0, 0, -6.6]) color("red") cylinder(r = 50 / 2, h = 19.57, center = true);
 
     //handle
+    
     translate([0, 0, -15]) {
         difference() {
             cylinder(r1 = HANDLE_BASE / 2, r2 = HANDLE_TOP / 2, h = HANDLE_H, $fn = FINE);
+            //text
+            translate([0, 0, 15 + 39.75]) number_one();
             //ring negative
             translate([0, 0, 31 + 14.5]) {
                 difference () {
