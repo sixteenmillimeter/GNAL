@@ -3,17 +3,18 @@ V="v3"
 
 echo "Rendering GNAL ${V}"
 
+sh ./scripts/license.sh
+
 VERSION=`bash ./scripts/version.sh`
 CPU=`bash ./scripts/cpu.sh`
 DIST=./stl
 IMG=./img
-
 NOTES=./notes/${V}.csv
 
 #"quarter_a" "quarter_b" "quarter_c" "quarter_d"
 #quarter pieces not rendering properly
 
-FILES=( "spindle_bottom" "spindle_top" "spacer" "top" "spiral" "insert_s8" "insert_16" "spacer_16" )
+FILES=( "spindle_bottom" "spindle_top" "spindle_single" "spacer" "top" "spiral" "insert_s8" "insert_16" "spacer_16" "insert_single" )
 SIZES=( "50ft" "100ft" ) 
 
 mkdir -p $DIST
@@ -85,8 +86,11 @@ do
 			openscad -o "$png" --imgsize=1920,1080 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
 		fi
 	done
+	# add license to directories for zip
+	cp ./LICENSE.txt "./stl/${SIZE}_v3/"
 	# zip all
 	zip -x ".*" -r "./releases/gnal_${SIZE}_v3.zip" "./stl/${SIZE}_v3/"
 	# tar all
 	tar --exclude=".*" -czvf "./releases/gnal_${SIZE}_v3.tar.gz" "./stl/${SIZE}_v3/"
 done
+
