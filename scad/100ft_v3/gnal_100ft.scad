@@ -257,7 +257,7 @@ module film_guide (rotations = 60, id = 45.55, spacing = 2.075, bottom = -2) {
     spiral(rotations, id, spacing, bottom, $fn);
 }
 
-PART="spindle_top";
+PART="spiral";
 
 if (PART == "spiral") {
     gnal_100ft_spiral();
