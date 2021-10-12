@@ -275,6 +275,12 @@ module gnal_spiral_bottom_insert_16 () {
     }
 }
 
+/**
+ * Comment to preserve my sanity when developing: This single-spiral
+ * insert is the same height as the s8 insert but has a different
+ * diameter void fo the screw to prevent mismatching of spindle screws
+ * designed for different purposes.
+ **/
 module gnal_spiral_bottom_insert_single () {
     $fn = 160;
     void_d = 18 - .3;
