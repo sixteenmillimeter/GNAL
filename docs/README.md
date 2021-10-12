@@ -161,7 +161,7 @@ In a compromise to make the process of removing the support material less danger
 The spiral is also made thicker and is a multiple of my nozzle diameter (0.4mm). 
 This uses slightly more material but is less fragile than V1 and test prints proved that the supports were less difficult to remove than in the earliest model.
 
-This version will also contain a 4x reel stacking feature so that all models can be stacked with 3 spiral reels and a top piece. 
+This version will also contain a 4x reel stacking feature so that all models can be stacked with 4 spiral reels and a top piece. 
 That will give 200ft capacity to the 50ft model and 400ft capacity to the 100ft model. 
 A stretch goal for this version is to make a 35mm spacer and spindle set so that movie film in the format can be processed in 100ft lengths.
 
