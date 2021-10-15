@@ -8,5 +8,4 @@ else
 	CPU=-1
 fi
 
-
 echo $CPU
