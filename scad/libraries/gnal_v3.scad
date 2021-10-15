@@ -384,6 +384,37 @@ module gnal_spacer_solid () {
     }
 }
 
+/**
+ * This spacer attaches to the top piece when it is used
+ * for Super8 film.
+ **/
+module gnal_spacer () {
+    add = 3.25;
+    core_d = 29.5;
+    core_bottom_d = 26.2 + .2;
+    void_d = 22.5;
+    h = 8 + add;
+    translate([0, 0, (add / 2) - 1]) difference () {
+        union () {
+            difference () {
+                cylinder(r = core_d / 2, h = h, center = true, $fn = 200);
+                translate([0, 0, 8]) cylinder(r = core_bottom_d / 2, h = h, center = true, $fn = 200);
+                cylinder(r = void_d / 2, h = h + 1, center = true, $fn = 200);
+            }
+            translate([0, 0, 0]) spacer_ridges_loose();
+            spacer_outer_ridges();
+        }
+        //trim top
+        translate([0, 0, h - 0.1]) cylinder(r = (core_d + 1) / 2, h = h, center = true, $fn = 200);
+        //trim bottom
+        translate([0, 0, -h + 0.9]) cylinder(r = (core_d + 1) / 2, h = h, center = true, $fn = 200);
+        //finger grips
+        //translate([0, 24, 0]) rotate([-6, 0, 0]) cylinder(r = 10, h = 6, center = true, $fn = 100);
+        //translate([0, -24, 0]) rotate([6, 0, 0]) cylinder(r = 10, h = 6, center = true, $fn = 100);
+    }
+}
+
+
 module gnal_spacer_16 () {
     core_d = 29.5;
     core_bottom_d = 26.2 + .2;

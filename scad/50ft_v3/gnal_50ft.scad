@@ -281,6 +281,8 @@ if (PART == "spiral") {
     gnal_50ft_spiral_quarter("d");
 } else if (PART == "top") {
     gnal_50ft_top();
+} else if (PART == "spacer") {
+    gnal_spacer();
 } else if (PART == "insert_s8") {
     gnal_spiral_bottom_insert_s8();
 } else if (PART == "insert_16") {
