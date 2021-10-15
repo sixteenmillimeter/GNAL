@@ -123,7 +123,7 @@ module gnal_spiral_core () {
             }
         }
         cylinder(r = void_d / 2, h = 30, center = true);
-        translate([0, 0, -7.2]) spiral_bottom_insert_void();
+        translate([0, 0, -7.2]) spiral_insert_void();
     }
 
     //arms
@@ -185,11 +185,11 @@ module gnal_spiral_core () {
         cylinder(r = core_void_outer_d / 2, h = core_void_h, center = true);
         rotate([0, 0, -120]) translate([20, 0, -1.5]) rotate([0, 0, 45]) cube([20, 20, 3.01], center = true);
         cylinder(r = void_d / 2, h = 30, center = true);
-        translate([0, 0, -7.2]) spiral_bottom_insert_void();
+        translate([0, 0, -7.2]) spiral_insert_void();
     }
 }
 
-module spiral_bottom_insert_void () {
+module spiral_insert_void () {
     intersection () {
         rotate([0, 45, 0]) cube([3, INSERT_D + 2, 3], center = true);
         cylinder(r = (INSERT_D + 1) / 2, h = 6, center = true);
@@ -275,6 +275,12 @@ module gnal_spiral_bottom_insert_16 () {
     }
 }
 
+/**
+ * Comment to preserve my sanity when developing: This single-spiral
+ * insert is the same height as the s8 insert but has a different
+ * diameter void fo the screw to prevent mismatching of spindle screws
+ * designed for different purposes.
+ **/
 module gnal_spiral_bottom_insert_single () {
     $fn = 160;
     void_d = 18 - .3;
