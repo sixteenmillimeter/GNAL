@@ -2,3 +2,4 @@
 benchmark
 releases
 stl/*/*.txt
+csg/*
