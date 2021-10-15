@@ -1,6 +1,8 @@
 #!/bin/bash
 V="v3"
 
+# Commit changes before running this build script
+
 echo "Rendering GNAL ${V}"
 
 bash ./scripts/deps.sh
@@ -95,15 +97,17 @@ render_part () {
 		echo "$line"
 	fi
 
-	start=`date +%s`
-	if [[ "${SIZE}" == "100ft" ]]; then
-		openscad --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
-	else
-		openscad --csglimit=10000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=600" "${scad}"
+	if [ ${STEP} = true ] && [[ "${FILE}" == "spiral" ]]; then
+		start=`date +%s`
+		if [[ "${SIZE}" == "100ft" ]]; then
+			openscad --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
+		else
+			openscad --csglimit=10000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=600" "${scad}"
+		fi
+		end=`date +%s`
+		runtime=$((end-start))
+		echo "Compiling CSG took ${runtime}sec"
 	fi
-	
-	end=`date +%s`
-	runtime=$((end-start))
 
 	echo "Rendering image of ${stl}..."
 
