@@ -271,8 +271,6 @@ PART="stacking";
 
 if (PART == "spiral") {
     gnal_50ft_spiral();
-} else if (PART == "tank") {
-    gnal_50ft_tank();
 } else if (PART == "quarter_a") {
     gnal_50ft_spiral_quarter("a");
 } else if (PART == "quarter_b") {
