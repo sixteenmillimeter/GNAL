@@ -26,6 +26,7 @@ FILES=(
 	"spindle_single"  
 	"insert_s8" 
 	"insert_16" 
+	"spacer"
 	"spacer_16" 
 	"insert_single"
 	"top" 
