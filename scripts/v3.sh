@@ -31,9 +31,10 @@ FILES=(
 )
 SIZES=( "50ft" "100ft" ) 
 
-mkdir -p $DIST
+mkdir -p "${DIST}"
 if [ $STEP = true ]; then
-	mkdir -p $CSG
+	mkdir -p "${CSG}"
+	mkdir -p "${CSG}/${SIZE}_${V}/"
 fi
 
 render_part () {
@@ -67,7 +68,7 @@ render_part () {
 		if [[ $firstline == solid* ]]; then
 			#convert from ascii to binary
 			tmpBinary=`mktemp`
-			admesh -c -b "$stl" "$tmpBinary"
+			admesh -c -b "$tmpBinary" "$stl"
 			newSize=`wc -c < "$tmpBinary"`
 			newSize=`echo $newSize | xargs`
 
