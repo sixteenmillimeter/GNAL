@@ -17,6 +17,8 @@ include <./Triangles.scad>;
  *
  */
 
+DEBUG = false;
+
 FINE = 200;
 
 OD = 10 + .5;
@@ -266,7 +268,13 @@ module gnal_spiral_bottom_insert_16 () {
                 }
             }
         }
-        translate([0, 0, -(H / 2) - 2]) metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length=LEN + 8);
+        translate([0, 0, -(H / 2) - 2]) {
+            if (DEBUG) {
+                cylinder(r = OD / 2, h = LEN + 8);
+            } else {
+                metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length=LEN + 8);
+            }
+        }
         translate([0, 0, 8.5]) {
             for (i = [0: RIDGES - 1]) {
                 rotate([0, 0, i * (360 / RIDGES)]) translate([void_d / 2, 0, 0]) cylinder(r = RIDGE_D / 2, h = 8.1, center = true);
@@ -310,7 +318,13 @@ module gnal_spiral_bottom_insert_single () {
                 }
             }
         }
-        translate([0, 0, -LEN / 2]) metric_thread (diameter=SINGLE_THREAD_D, pitch=PITCH, thread_size = THREAD, length = LEN);
+        translate([0, 0, -LEN / 2]) {
+            if (DEBUG) {
+                cylinder(r = SINGLE_THREAD_D / 2, h = LEN);
+            } else {
+                metric_thread (diameter=SINGLE_THREAD_D, pitch=PITCH, thread_size = THREAD, length = LEN);
+            }
+        }
     }
 }
 
@@ -351,33 +365,8 @@ module spacer_outer_ridges () {
         }
     }
 }
-module gnal_spacer () {
-    add = 3.25;
-    core_d = 29.5;
-    core_bottom_d = 26.2 + .2;
-    void_d = 22.5;
-    h = 8 + add;
-    translate([0, 0, (add / 2) - 1]) difference () {
-        union () {
-            difference () {
-                cylinder(r = core_d / 2, h = h, center = true, $fn = 200);
-                translate([0, 0, 8]) cylinder(r = core_bottom_d / 2, h = h, center = true, $fn = 200);
-                cylinder(r = void_d / 2, h = h + 1, center = true, $fn = 200);
-            }
-            translate([0, 0, 0]) spacer_ridges_loose();
-            spacer_outer_ridges();
-        }
-        //trim top
-        translate([0, 0, h - 0.1]) cylinder(r = (core_d + 1) / 2, h = h, center = true, $fn = 200);
-        //trim bottom
-        translate([0, 0, -h + 0.9]) cylinder(r = (core_d + 1) / 2, h = h, center = true, $fn = 200);
-        //finger grips
-        //translate([0, 24, 0]) rotate([-6, 0, 0]) cylinder(r = 10, h = 6, center = true, $fn = 100);
-        //translate([0, -24, 0]) rotate([6, 0, 0]) cylinder(r = 10, h = 6, center = true, $fn = 100);
-    }
-}
 
-module gnal_spacer_16 () {
+module gnal_spacer_solid () {
     core_d = 29.5;
     core_bottom_d = 26.2 + .2;
     void_d = 18;
@@ -389,10 +378,23 @@ module gnal_spacer_16 () {
         union () {
             difference () {
                 cylinder(r = core_d / 2, h = h, center = true, $fn = 200);
-                cylinder(r = void_d / 2, h = h + 1, center = true, $fn = 200);
             }
             translate([0, 0, -.75]) rotate([0, 180, 0]) spacer_outer_ridges();
         }
+    }
+}
+
+module gnal_spacer_16 () {
+    core_d = 29.5;
+    core_bottom_d = 26.2 + .2;
+    void_d = 18.3;
+    h = 8;
+    
+    RIDGES = 8;
+    RIDGE_D = 3;
+    difference () {
+        gnal_spacer_solid();
+        cylinder(r = void_d / 2, h = h + 1, center = true, $fn = 200);
     }
     translate([0, 0, 0]) {
             for (i = [0: RIDGES - 1]) {
@@ -405,9 +407,17 @@ module gnal_spacer_16 () {
  * Spindles
  **/
 
-module gnal_spindle_bottom_base ( HEX = false) {
+module gnal_spindle_base ( ) {
     D = 8.45 * 2;
     H = 20;
+    union() {
+        translate([0, 0, -15]) {
+            cylinder(r = D / 2, h = H, center = true, $fn = FINE);
+        }
+    }
+}
+
+module gnal_spindle_bottom_base ( HEX = false) {
     //for grip
     BUMP = 2; //diameter
     BUMPS = 6;
@@ -416,9 +426,7 @@ module gnal_spindle_bottom_base ( HEX = false) {
     TOP_OFFSET = -24.5;
     
     union() {
-        translate([0, 0, -15]) {
-            cylinder(r = D / 2, h = H, center = true, $fn = FINE);
-        }
+        gnal_spindle_base();
         //hex version
         if (HEX) {
             translate([0, 0, TOP_OFFSET]) {
@@ -445,7 +453,13 @@ module outer_screw (LEN) {
     THREAD = 1.6;
     
     difference () {
-        translate([0, 0, -7.1]) metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length=LEN);
+        translate([0, 0, -7.1]) {
+            if (DEBUG) {
+                cylinder(r = OD / 2, h = LEN);
+            } else {
+                metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length=LEN);
+            }
+        }
         //bevel top of screw
         translate([0, 0, LEN - 8]) difference() {
             cylinder(r = 8, h = 3, center = true, $fn = FINE);
@@ -466,9 +480,17 @@ module gnal_spindle_bottom (ALT = false, HEX = false) {
         gnal_spindle_bottom_base(HEX);
         //inner screw negative
         translate([0, 0, -30]) union() {
-            metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
-            translate([0, 0, 0.2]) {
+            if (DEBUG) {
+                cylinder(r = OD / 2, h = IN_LEN);
+            } else { 
                 metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
+            }
+            translate([0, 0, 0.2]) {    
+                if (DEBUG) {
+                    cylinder(r = OD / 2, h = IN_LEN);
+                } else {
+                    metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
+                }
             }
         }
    }
@@ -480,8 +502,6 @@ module gnal_spindle_bottom (ALT = false, HEX = false) {
         } else {
             outer_screw(LEN);
         }
-        //hollow center
-        cylinder(r = 3.8 / 2, h = 100, center = true, $fn = 60);
     }  
 }
 
@@ -583,7 +603,11 @@ module gnal_spindle_top () {
     }
     //screw
     translate([0, 0, -37.5]) {
-        metric_thread (diameter=13.6, pitch = PITCH, thread_size = THREAD, length = 21);
+        if (DEBUG) {
+            cylinder(r = 13.6 / 2, h =  21);
+        } else {
+            metric_thread (diameter=13.6, pitch = PITCH, thread_size = THREAD, length = 21);
+        }
     }
     //cylinder plug
     translate([0, 0, -37.5 + (21 / 2) - 1]) {
@@ -689,7 +713,11 @@ module gnal_spindle_single () {
     }
     //screw
     translate([0, 0, -37.5 - SINGLE_INSERT]) {
-        metric_thread (diameter=SINGLE_THREAD_D, pitch = PITCH, thread_size = THREAD, length = 21);
+        if (DEBUG) {
+            cylinder(r = SINGLE_THREAD_D / 2, h = 21);
+        } else {
+            metric_thread (diameter=SINGLE_THREAD_D, pitch = PITCH, thread_size = THREAD, length = 21);
+        }
     }
     //cylinder plug
     translate([0, 0, -37.5 - SINGLE_INSERT + (21 / 2) - 1]) {

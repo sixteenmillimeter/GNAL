@@ -187,10 +187,92 @@ module film_guide (rotations = 40, id = 45.55 - .5, spacing = 2.075, bottom = -2
     spiral(rotations, id, spacing, bottom, $fn);
 }
 
-PART="quarter_a";
+module gnal_stacking_spindle () {
+    IN_LEN = 21;
+    
+    LEN = 17.1;
+    ALT_LEN = 27.1;
+    difference () {
+        union () {
+            gnal_spindle_base();
+            translate([0, 0, -23.75]) gnal_spacer_solid();
+        }
+        //inner screw negative
+        translate([0, 0, -30]) union() {
+            if (DEBUG) {
+                cylinder(r = OD / 2, h = IN_LEN);
+            } else { 
+                metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
+            }
+            translate([0, 0, 0.2]) {    
+                if (DEBUG) {
+                    cylinder(r = OD / 2, h = IN_LEN);
+                } else {
+                    metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
+                }
+            }
+        }
+   }
+
+    difference () {
+         outer_screw(LEN - 2);
+    }  
+}
+
+module stacking () {
+    translate([0, 0, 72 + 72 + 36]) {
+        color("blue") gnal_spindle_top();
+    }
+    translate([0, 0, 72 + 72]) rotate([0, 180, 0]) intersection () {
+        gnal_50ft_top();
+        cylinder(r = 50 / 2, h = 50, center = true);
+    }
+    
+    translate([0, 0, 72 + 30]) {
+        color("blue") rotate([0, 180, 0]) gnal_spindle_bottom();
+    }
+    
+    translate([0, 0, 72 + 36]) difference () {
+        cylinder(r = 50 / 2, h = 16, center = true);
+        cylinder(r = 22.5 / 2, h = 16 + 1, center = true);
+    }
+    
+    translate([0, 0, 36 + 30]) {
+        color("green") rotate([0, 180, 0]) gnal_stacking_spindle();
+    }
+    
+    translate([0, 0, 72]) difference () {
+        cylinder(r = 50 / 2, h = 16, center = true);
+        cylinder(r = 22.5 / 2, h = 16 + 1, center = true);
+    }
+    
+    translate([0, 0, 30]) {
+        color("green") rotate([0, 180, 0]) gnal_stacking_spindle();
+    }
+    
+    translate([0, 0, 36]) difference () {
+        cylinder(r = 50 / 2, h = 16, center = true);
+        cylinder(r = 22.5 / 2, h = 16 + 1, center = true);
+    }
+    
+    color("blue") translate([0, 0, 12 + 3]) gnal_spacer_16();
+    //#1 - bottom spiral
+    difference () {
+        cylinder(r = 50 / 2, h = 16, center = true);
+        cylinder(r = 22.5 / 2, h = 16 + 1, center = true);
+        translate([0, 0, -8]) spiral_insert_void();
+    }
+    
+    color("blue") translate([0, 0, -12]) gnal_spiral_bottom_insert_16();
+    
+}
+
+PART="stacking";
 
 if (PART == "spiral") {
     gnal_50ft_spiral();
+} else if (PART == "tank") {
+    gnal_50ft_tank();
 } else if (PART == "quarter_a") {
     gnal_50ft_spiral_quarter("a");
 } else if (PART == "quarter_b") {
@@ -201,8 +283,6 @@ if (PART == "spiral") {
     gnal_50ft_spiral_quarter("d");
 } else if (PART == "top") {
     gnal_50ft_top();
-} else if (PART == "spacer") {
-    gnal_spacer();
 } else if (PART == "insert_s8") {
     gnal_spiral_bottom_insert_s8();
 } else if (PART == "insert_16") {
@@ -217,6 +297,9 @@ if (PART == "spiral") {
     gnal_spindle_bottom();
 } else if (PART == "spindle_single") {
     gnal_spindle_top();
+} else if (PART == "stacking") {
+    //stacking();
+    rotate([0, 180, 0]) gnal_stacking_spindle();
 } else if (PART == "spiral_test") {
     difference () {
         gnal_50ft_spiral();
@@ -224,3 +307,11 @@ if (PART == "spiral") {
         rotate([0, 0, 30]) translate([-125, 0, 0]) cube([250, 250, 100], center = true);
     }
 }
+
+if (DEBUG) {
+    echo("WARNING: DEBUG is enabled");
+}
+
+echo($vpt);
+echo($vpr);
+echo($vpd);

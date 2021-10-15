@@ -182,7 +182,7 @@ If your prints are warping, there are a few things to look at:
 3. Slicer settings
 
 The first thing to consider when your prints are coming out warped off the print bed is whether or not your **material** is appropriate for this model. 
-Check the [material](#material) section of this README for more information, but theres a chance if you are using PLA or ABS that large flat prints of this size are warping due to limitations with the material you are using. PETG has proven to warp far less in my own anecdotal experience and is the recommended material for this project.
+Check the [material](#material) section of this README for more information, but there's a chance if you are using PLA or ABS that large flat prints of this size are warping due to limitations with the material you are using. PETG has proven to warp far less in my own anecdotal experience and is the recommended material for this project.
 
 The thermal properties of the material you're printing with are what causes warping, so check if your printer is being set to the recommended **temperatures** on both the bed and extruder for the material and printer you are using. 
 Warping occurs consistently when a section of a part cools too quickly and contracts while the rest of it is still being printed. 
@@ -222,7 +222,7 @@ Had issues or success printing this? Interested in getting in contact?
 
 MIT License
 
-Copyright (c) 2020 Matt McWilliams
+Copyright (c) 2021 Matt McWilliams
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this hardware, software, and associated documentation files (the "Product"), to deal in the Product without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Product, and to permit persons to whom the Product is furnished to do so, subject to the following conditions:
 
