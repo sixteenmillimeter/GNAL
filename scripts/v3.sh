@@ -35,9 +35,9 @@ FILES=(
 SIZES=( "50ft" "100ft" ) 
 
 mkdir -p "${DIST}"
+
 if [ $STEP = true ]; then
 	mkdir -p "${CSG}"
-	mkdir -p "${CSG}/${SIZE}_${V}/"
 fi
 
 render_part () {
@@ -99,6 +99,7 @@ render_part () {
 	fi
 
 	if [ ${STEP} = true ] && [[ "${FILE}" == "spiral" ]]; then
+		mkdir -p "${CSG}/${SIZE}_${V}/"
 		start=`date +%s`
 		if [[ "${SIZE}" == "100ft" ]]; then
 			openscad --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
