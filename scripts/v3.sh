@@ -52,9 +52,9 @@ render_part () {
 
 	start=`date +%s`
 	if [[ "${SIZE}" == "100ft" ]]; then
-		openscad --csglimit=2000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
+		openscad --csglimit=2000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=800" -D "DEBUG=false" "${scad}"
 	else
-		openscad --csglimit=1000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=600" "${scad}"
+		openscad --csglimit=1000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=600" -D "DEBUG=false" "${scad}"
 	fi
 	
 	end=`date +%s`
