@@ -185,9 +185,16 @@ $fn = FN;
 
 module film_guide (rotations = 40, id = 45.55 - .5, spacing = 2.075, bottom = -2) {
     spiral(rotations, id, spacing, bottom, $fn);
+    //reinforce outer spiral
+    difference () {
+        spiral_reinforcement(208.9, spacing, -0.1, $fn);
+        translate([107.35, 6, 0]) cube([5, 15, 10], center = true);
+    }
+    
 }
 
 module gnal_stacking_spindle () {
+    OD = 10.5 + .3;
     IN_LEN = 21;
     
     LEN = 17.1;
@@ -219,55 +226,7 @@ module gnal_stacking_spindle () {
     }  
 }
 
-module stacking () {
-    translate([0, 0, 72 + 72 + 36]) {
-        color("blue") gnal_spindle_top();
-    }
-    translate([0, 0, 72 + 72]) rotate([0, 180, 0]) intersection () {
-        gnal_50ft_top();
-        cylinder(r = 50 / 2, h = 50, center = true);
-    }
-    
-    translate([0, 0, 72 + 30]) {
-        color("blue") rotate([0, 180, 0]) gnal_spindle_bottom();
-    }
-    
-    translate([0, 0, 72 + 36]) difference () {
-        cylinder(r = 50 / 2, h = 16, center = true);
-        cylinder(r = 22.5 / 2, h = 16 + 1, center = true);
-    }
-    
-    translate([0, 0, 36 + 30]) {
-        color("green") rotate([0, 180, 0]) gnal_stacking_spindle();
-    }
-    
-    translate([0, 0, 72]) difference () {
-        cylinder(r = 50 / 2, h = 16, center = true);
-        cylinder(r = 22.5 / 2, h = 16 + 1, center = true);
-    }
-    
-    translate([0, 0, 30]) {
-        color("green") rotate([0, 180, 0]) gnal_stacking_spindle();
-    }
-    
-    translate([0, 0, 36]) difference () {
-        cylinder(r = 50 / 2, h = 16, center = true);
-        cylinder(r = 22.5 / 2, h = 16 + 1, center = true);
-    }
-    
-    color("blue") translate([0, 0, 12 + 3]) gnal_spacer_16();
-    //#1 - bottom spiral
-    difference () {
-        cylinder(r = 50 / 2, h = 16, center = true);
-        cylinder(r = 22.5 / 2, h = 16 + 1, center = true);
-        translate([0, 0, -8]) spiral_insert_void();
-    }
-    
-    color("blue") translate([0, 0, -12]) gnal_spiral_bottom_insert_16();
-    
-}
-
-PART="stacking";
+PART="spiral";
 
 if (PART == "spiral") {
     gnal_50ft_spiral();

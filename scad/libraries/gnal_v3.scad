@@ -82,6 +82,39 @@ module spiral (rotations = 40, start_d = 48, spacing = 2.075, bottom = -7.1, fn)
     path_extrude(exShape=facetProfile, exPath=spiralPath);
 }
 
+module spiral_reinforcement ( start_d = 48, spacing = 2.075, bottom = -2, fn) {
+    rotations = 1;
+    w = 1;
+    top_w = .8;
+    top_offset = (w - top_w);
+    h = 2.2;
+    
+    facetProfile = [
+        [w, -bottom],
+        [0, -bottom],
+        [0, 0], 
+        [0, -h],
+        [w, -h],
+        [w, 0]
+    ];
+
+    end_d = start_d + (spacing * 2 * rotations);
+    end_r = end_d / 2;
+    start_r = start_d / 2;
+
+    facetSize = calcFacetSize(end_d, fn);
+    start_fn = round(circ(start_d) / facetSize);
+
+
+    spiralPath = [ for (r = [0 : rotations - 1]) for (i = [0 : round(calcFn(start_d, start_fn, end_d, spacing, r )) - 1 ])
+                    [
+                        X(start_r, spacing, round(calcFn(start_d, start_fn, end_d, spacing, r )), r, i), 
+                        Y(start_r, spacing, round(calcFn(start_d, start_fn, end_d, spacing, r )), r, i), 
+                        0] 
+                    ];
+    path_extrude(exShape=facetProfile, exPath=spiralPath);
+}
+
 /**
  * Core (center of the reel)
  **/
@@ -204,6 +237,7 @@ module spiral_insert_void () {
 
 module gnal_spiral_bottom_insert_s8 () {
     $fn = 160;
+    OD = 10.5 + .3;
     void_d = 18 - .3;
     H = 17;
     D2 = INSERT_D;
@@ -231,12 +265,19 @@ module gnal_spiral_bottom_insert_s8 () {
                 }
             }
         }
-        translate([0, 0, -LEN / 2]) metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length=LEN);
+        translate([0, 0, -LEN / 2]) {
+            if (DEBUG) {
+                cylinder(r = OD / 2, h = LEN);
+            } else {
+                metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length=LEN);
+            }
+        }
     }
 }
 
 module gnal_spiral_bottom_insert_16 () {
     $fn = 160;
+    OD = 10.5 + .3;
     
     void_d = 18 - .3;
     H = 17 + 8;
