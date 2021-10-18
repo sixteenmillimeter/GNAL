@@ -255,6 +255,11 @@ $fn = FN;
 
 module film_guide (rotations = 60, id = 45.55, spacing = 2.075, bottom = -2) {
     spiral(rotations, id, spacing, bottom, $fn);
+    //reinforce outer spiral
+    difference () {
+        spiral_reinforcement(292.9, spacing, -0.1, $fn);
+        translate([149.125, 9, 0]) cube([5, 20, 10], center = true);
+    }
 }
 
 PART="spiral";
