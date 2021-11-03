@@ -236,6 +236,8 @@ if (DEBUG) {
     echo("WARNING: DEBUG is enabled");
 }
 
+/*
 echo($vpt);
 echo($vpr);
 echo($vpd);
+*/
