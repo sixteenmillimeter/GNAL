@@ -14,7 +14,7 @@ DIST=./stl
 CSG=./csg
 IMG=./img
 NOTES=./notes/${V}.csv
-STEP=true
+STEP=false
 LOGGING=true
 
 #"quarter_a" "quarter_b" "quarter_c" "quarter_d"
@@ -23,7 +23,8 @@ LOGGING=true
 FILES=( 
 	"spindle_bottom" 
 	"spindle_top" 
-	"spindle_single"  
+	"spindle_single"
+	"spindle_stacking"  
 	"insert_s8" 
 	"insert_16" 
 	"spacer"
@@ -118,9 +119,9 @@ render_part () {
 		fullPath=`realpath "${stl}"`
 		data="import(\"${fullPath}\");"
 		echo data > "${tmp}.scad"
-		openscad -o "$png" --imgsize=2048,2048 --colorscheme=DeepOcean "${tmp}.scad"
+		openscad -o "$png" --csglimit=2000000 --imgsize=2048,2048 --colorscheme=DeepOcean "${tmp}.scad"
 	else
-		openscad -o "$png" --imgsize=2048,2048 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
+		openscad -o "$png" --csglimit=1000000 --imgsize=2048,2048 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
 	fi
 }
 
