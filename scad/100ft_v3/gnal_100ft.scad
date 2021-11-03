@@ -3,6 +3,8 @@
 include <../libraries/gnal_v3.scad>;
 
 SPOKE_COUNT = 24;
+FN = 200;
+$fn = FN;
 
 module gnal_100ft_spiral (spiral_count = 60, od = 298.75, quarter = false) {
     outer_d = 299;
@@ -249,9 +251,6 @@ module gnal_100ft_top () {
         }
     }    
 }
-
-FN = 200;
-$fn = FN;
 
 module film_guide (rotations = 60, id = 45.55, spacing = 2.075, bottom = -2) {
     spiral(rotations, id, spacing, bottom, $fn);
