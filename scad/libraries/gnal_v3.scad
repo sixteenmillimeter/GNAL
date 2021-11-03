@@ -237,7 +237,7 @@ module spiral_insert_void () {
 module gnal_spiral_bottom_insert_s8 () {
     $fn = 160;
     OD = 10.5 + .3;
-    void_d = 18 - .3;
+    void_d = 18 - .6;
     H = 17;
     D2 = INSERT_D;
     
@@ -278,7 +278,7 @@ module gnal_spiral_bottom_insert_16 () {
     $fn = 160;
     OD = 10.5 + .3;
     
-    void_d = 18 - .3;
+    void_d = 18 - .6;
     H = 17 + 8;
     D2 = INSERT_D;
     
@@ -331,7 +331,7 @@ module gnal_spiral_bottom_insert_16 () {
  **/
 module gnal_spiral_bottom_insert_single () {
     $fn = 160;
-    void_d = 18 - .3;
+    void_d = 18 - .6;
     H = 17;
     D2 = INSERT_D;
     
