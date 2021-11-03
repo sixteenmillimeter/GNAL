@@ -18,7 +18,6 @@ include <./Triangles.scad>;
  */
 
 DEBUG = false;
-
 FINE = 200;
 
 OD = 10 + .5;
@@ -792,4 +791,37 @@ module gnal_spindle_single () {
     translate([0, 0, -37.5 - SINGLE_INSERT + (21 / 2) - 1]) {
         cylinder(r = 10 / 2, h = 21, center = true, $fn = FINE);
     }
+}
+
+module gnal_stacking_spindle () {
+    OD = 10.5 + .3;
+    IN_LEN = 21;
+    
+    LEN = 17.1;
+    ALT_LEN = 27.1;
+    difference () {
+        union () {
+            gnal_spindle_base();
+            translate([0, 0, -23.75]) gnal_spacer_solid();
+        }
+        //inner screw negative
+        translate([0, 0, -30]) union() {
+            if (DEBUG) {
+                cylinder(r = OD / 2, h = IN_LEN);
+            } else { 
+                metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
+            }
+            translate([0, 0, 0.2]) {    
+                if (DEBUG) {
+                    cylinder(r = OD / 2, h = IN_LEN);
+                } else {
+                    metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
+                }
+            }
+        }
+   }
+
+    difference () {
+         outer_screw(LEN - 2);
+    }  
 }

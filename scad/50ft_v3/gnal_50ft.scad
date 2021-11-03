@@ -193,39 +193,6 @@ module film_guide (rotations = 40, id = 45.55 - .5, spacing = 2.075, bottom = -2
     
 }
 
-module gnal_stacking_spindle () {
-    OD = 10.5 + .3;
-    IN_LEN = 21;
-    
-    LEN = 17.1;
-    ALT_LEN = 27.1;
-    difference () {
-        union () {
-            gnal_spindle_base();
-            translate([0, 0, -23.75]) gnal_spacer_solid();
-        }
-        //inner screw negative
-        translate([0, 0, -30]) union() {
-            if (DEBUG) {
-                cylinder(r = OD / 2, h = IN_LEN);
-            } else { 
-                metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
-            }
-            translate([0, 0, 0.2]) {    
-                if (DEBUG) {
-                    cylinder(r = OD / 2, h = IN_LEN);
-                } else {
-                    metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
-                }
-            }
-        }
-   }
-
-    difference () {
-         outer_screw(LEN - 2);
-    }  
-}
-
 PART="spiral";
 
 if (PART == "spiral") {
@@ -242,22 +209,21 @@ if (PART == "spiral") {
     gnal_50ft_top();
 } else if (PART == "spacer") {
     gnal_spacer();
+} else if (PART == "spacer_16") {
+    gnal_spacer_16();
 } else if (PART == "insert_s8") {
     gnal_spiral_bottom_insert_s8();
 } else if (PART == "insert_16") {
     gnal_spiral_bottom_insert_16();
 } else if (PART == "insert_single") {
     gnal_spiral_bottom_insert_single();
-} else if (PART == "spacer_16") {
-    gnal_spacer_16();
 } else if (PART == "spindle_top") {
     gnal_spindle_top();
 } else if (PART == "spindle_bottom") {
     gnal_spindle_bottom();
 } else if (PART == "spindle_single") {
-    gnal_spindle_top();
-} else if (PART == "stacking") {
-    //stacking();
+    gnal_spindle_single();
+} else if (PART == "spindle_stacking") {
     rotate([0, 180, 0]) gnal_stacking_spindle();
 } else if (PART == "spiral_test") {
     difference () {

@@ -278,18 +278,20 @@ if (PART == "spiral") {
     gnal_100ft_top();
 } else if (PART == "spacer") {
     gnal_spacer();
+} else if (PART == "spacer_16") {
+    gnal_spacer_16();
 } else if (PART == "insert_s8") {
     gnal_spiral_bottom_insert_s8();
 } else if (PART == "insert_16") {
     gnal_spiral_bottom_insert_16();
 } else if (PART == "insert_single") {
     gnal_spiral_bottom_insert_single();
-} else if (PART == "spacer_16") {
-    gnal_spacer_16();
 } else if (PART == "spindle_top") {
     gnal_spindle_top();
 } else if (PART == "spindle_bottom") {
     gnal_spindle_bottom();
 } else if (PART == "spindle_single") {
     gnal_spindle_single();
+} else if (PART == "spindle_stacking") {
+    rotate([0, 180, 0]) gnal_stacking_spindle();
 }
