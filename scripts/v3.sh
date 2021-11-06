@@ -53,9 +53,9 @@ render_part () {
 
 	start=`date +%s`
 	if [[ "${SIZE}" == "100ft" ]]; then
-		openscad --csglimit=2000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=800" -D "DEBUG=false" "${scad}"
+		openscad --csglimit=20000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=800" -D "DEBUG=false" "${scad}"
 	else
-		openscad --csglimit=1000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=600" -D "DEBUG=false" "${scad}"
+		openscad --csglimit=20000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=600" -D "DEBUG=false" "${scad}"
 	fi
 	
 	end=`date +%s`
@@ -103,9 +103,9 @@ render_part () {
 		mkdir -p "${CSG}/${SIZE}_${V}/"
 		start=`date +%s`
 		if [[ "${SIZE}" == "100ft" ]]; then
-			openscad --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
+			openscad --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=800" -D "DEBUG=false" "${scad}"
 		else
-			openscad --csglimit=10000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=600" "${scad}"
+			openscad --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=600" -D "DEBUG=false" "${scad}"
 		fi
 		end=`date +%s`
 		runtime=$((end-start))
@@ -119,9 +119,9 @@ render_part () {
 		fullPath=`realpath "${stl}"`
 		data="import(\"${fullPath}\");"
 		echo data > "${tmp}.scad"
-		openscad -o "$png" --csglimit=2000000 --imgsize=2048,2048 --colorscheme=DeepOcean "${tmp}.scad"
+		openscad -o "$png" --csglimit=20000000 --imgsize=2048,2048 --colorscheme=DeepOcean  "${tmp}.scad"
 	else
-		openscad -o "$png" --csglimit=1000000 --imgsize=2048,2048 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
+		openscad -o "$png" --csglimit=20000000 --imgsize=2048,2048 --colorscheme=DeepOcean  -D "DEBUG=false" -D "PART=\"${FILE}\"" "${scad}"
 	fi
 }
 
