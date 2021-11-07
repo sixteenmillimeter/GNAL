@@ -3,3 +3,4 @@ benchmark
 releases
 stl/*/*.txt
 csg/*
+notes/renders.sqlite

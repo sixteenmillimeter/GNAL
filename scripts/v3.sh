@@ -14,6 +14,7 @@ DIST=./stl
 CSG=./csg
 IMG=./img
 NOTES=./notes/${V}.csv
+DB="./notes/renders.sqlite"
 STEP=false
 LOGGING=true
 
@@ -35,11 +36,20 @@ FILES=(
 )
 SIZES=( "50ft" "100ft" ) 
 
+
 mkdir -p "${DIST}"
 
 if [ $STEP = true ]; then
 	mkdir -p "${CSG}"
 fi
+
+if [[ ! -f "${DB}" ]]; then
+	cat "./notes/setup.sql" | sqlite3 "${DB}"
+fi
+
+db () {
+	sqlite3 "${DB}" "${1}"
+}
 
 render_part () {
 	scad="${1}"
@@ -65,8 +75,11 @@ render_part () {
 	fileSize=`echo $fileSize | xargs`
 
 	if ! [ -x "$(command -v admesh)" ]; then
-		facets="N/A"
-		volume="N/A"
+		facets="-1"
+		volume="-1"
+		X="-1"
+		Y="-1"
+		Z="-1"
 	else
 		firstline=`head -n 1 "$stl"`
 		if [[ $firstline == solid* ]]; then
@@ -89,15 +102,69 @@ render_part () {
 		ao=`admesh -c "$stl"`
 		facets=`echo "$ao" | grep "Number of facets" | awk '{print $5}'`
 		volume=`echo "$ao" | grep "Number of parts"  | awk '{print $8}'`
+
+		minX=`echo "$ao" | grep "Min X" | awk '{print $4}'`
+		minX=`echo "${minX//,/}"`
+		maxX=`echo "$ao" | grep "Min X" | awk '{print $8}'`
+		minY=`echo "$ao" | grep "Min Y" | awk '{print $4}'`
+		minY=`echo "${minY//,/}"`
+		maxY=`echo "$ao" | grep "Min Y" | awk '{print $8}'`
+		minZ=`echo "$ao" | grep "Min Z" | awk '{print $4}'`
+		minZ=`echo "${minZ//,/}"`
+		maxZ=`echo "$ao" | grep "Min Z" | awk '{print $8}'`
+		X=`echo "scale=5;($maxX)-($minX)" | bc`
+		Y=`echo "scale=5;($maxY)-($minY)" | bc`
+		Z=`echo "scale=5;($maxZ)-($minZ)" | bc`
 	fi
 
 	hash=`sha256sum "$stl" | awk '{ print $1 }'`
+	commit=`git rev-parse --short HEAD`
 
 	if [ ${LOGGING} = true ]; then
-		line="${VERSION},${CPU},$stl,$hash,$fileSize,$srchash,$srcsize,$facets,$volume,$runtime"
+		line="${VERSION},${CPU},$stl,$hash,$fileSize,$srchash,$srcsize,$facets,$volume,$runtime,$commit"
 		echo "$line" >> $NOTES
 		echo "$line"
 	fi
+
+	TIME=`date '+%s'`
+	QUERY="INSERT OR IGNORE INTO renders ( \
+		time, \
+		commit_id, \
+		source, \
+		model, \
+		stl, \
+		stl_size, \
+		facets, \
+		volume, \
+		x, \
+		y, \
+		z, \
+		render_time, \
+		source_hash, \
+		stl_hash, \
+		openscad, \
+		cpu \
+	 ) \
+	VALUES ( \
+		$TIME, \
+		'$commit', \
+		'$scad', \
+		'$FILE', \
+		'$stl', \
+		$fileSize, \
+		$facets, \
+		$volume, \
+		$X, \
+		$Y, \
+		$Z, \
+		$runtime, \
+		'$srchash', \
+		'$hash', \
+		'$VERSION', \
+		'$CPU' \
+	)"
+	#echo -n "${QUERY}"
+	db "${QUERY}"
 
 	if [ ${STEP} = true ] && [[ "${FILE}" == "spiral" ]]; then
 		mkdir -p "${CSG}/${SIZE}_${V}/"
@@ -129,6 +196,9 @@ if [[ "${1}" != "" ]]; then
 	LOGGING=false
 	SIZE="${1}"
 	scad="./scad/${SIZE}_${V}/gnal_${SIZE}.scad"
+	srchash=`sha256sum "${scad}" | awk '{ print $1 }'`
+	srcsize=`wc -c < "${scad}"`
+	srcsize=`echo $srcsize | xargs`
 
 	mkdir -p "${DIST}/${SIZE}_${V}"
 	if [[ "${2}" != "" ]]; then
@@ -142,7 +212,7 @@ if [[ "${1}" != "" ]]; then
 	exit 0
 fi
 
-echo "version,cpu,file,file_hash,file_size,source_hash,source_size,facets,volume,render_time" > $NOTES
+echo "openscad,cpu,stl,stl_hash,stl_size,source_hash,source_size,facets,volume,render_time,commit" > $NOTES
 
 for SIZE in "${SIZES[@]}"
 do
