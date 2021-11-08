@@ -6,10 +6,11 @@ A free and open-source processing system for 16mm and Super8 film
 
 1. [What's GNAL?](#what)
 2. [STL Files](#stls)
-3. [Printers](#printers)
-4. [Material](#material)
-5. [Troubleshooting](#troubleshooting)
-6. [Contact](#contact)
+3. [Release Notes](#)
+4. [Printers](#printers)
+5. [Material](#material)
+6. [Troubleshooting](#troubleshooting)
+7. [Contact](#contact)
 
 ---
 <a name="what"></a>
@@ -41,6 +42,19 @@ Good question!
 
 ----
 <a name="stls"></a>
+## Latest - 3.0.1
+
+#### [All 50ft 3.0.1 STL files in a .zip]()
+
+* [Spiral](stl/50ft_v3/gnal_50ft_spiral.stl)
+* [Top](stl/50ft_v3/gnal_50ft_top.stl)
+* [Top Spacer](stl/50ft_v3/gnal_50ft_spacer.stl)
+* [Bottom Spiral Insert S8](stl/50ft_v3/gnal_50ft_insert_s8.stl)
+* [Bottom Spiral Insert 16mm](stl/50ft_v3/gnal_50ft_insert_16.stl)
+* [Bottom Spacer 16mm](stl/50ft_v3/gnal_50ft_spacer_16.stl)
+* [Spindle Top](stl/50ft_v3/gnal_50ft_spindle_top.stl)
+* [Spindle Bottom](stl/50ft_v3/gnal_50ft_spindle_bottom.stl)
+
 ## V3 STL Files
 
 ![V3 50ft spiral top and bottom](/img/gnal_50ft_v3_spiral_render.jpg)
@@ -120,6 +134,17 @@ Good question!
 * [Spacer](stl/100ft_v1/gnal_100ft_spacer.stl)
 
 -----
+
+<a name="notes"></a>
+## Release Notes
+
+#### v1, v2, v3
+
+* All files were published including the 3 major development versions of the GNAL
+* v3 was determined to be the release candidate and is the version in active development
+
+
+
 <a name="printers"></a>
 ## Printers
 
