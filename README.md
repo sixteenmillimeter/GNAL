@@ -35,7 +35,7 @@ There has been a lot of development around 3D printed processing spirals and any
 If you find any, please share with the email address at the bottom of this README.
 
 * [Movie Film Spiral Developing Tank by mb_maker on Thingiverse](https://www.thingiverse.com/thing:4715086)
-* [New 16mm developing tank](https://cinematography.com/index.php?/forums/topic/83456-new-16mm-developing-tank/)
+* [New 16mm developing tank by Sam Davisson](https://cinematography.com/index.php?/forums/topic/83456-new-16mm-developing-tank/)
 
 ## Where's the tank?
 
