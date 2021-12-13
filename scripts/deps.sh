@@ -24,7 +24,9 @@ for dep in ${DEPS[@]}; do
 	    	echo "For more information about how to install admesh https://github.com/admesh/admesh"
 	    	echo "OR https://www.howtoinstall.me/ubuntu/18-04/admesh/"
 	    fi
-	    echo "Individual .scad files can be compiled directly without this script"
+	    if [[ "${dep}" == "openscad" ]]; then
+	    	echo "Individual .scad files can be compiled directly without this script"
+	    fi
 	    exit 1
 	fi
 done
