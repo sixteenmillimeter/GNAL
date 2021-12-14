@@ -36,6 +36,7 @@ If you find any, please share with the email address at the bottom of this READM
 
 * [Movie Film Spiral Developing Tank by mb_maker on Thingiverse](https://www.thingiverse.com/thing:4715086)
 * [New 16mm developing tank by Sam Davisson](https://cinematography.com/index.php?/forums/topic/83456-new-16mm-developing-tank/)
+* [16mm Multi-Reel Film Developing Tank by James Harter](https://www.thingiverse.com/thing:4960952)
 
 ## Where's the tank?
 
