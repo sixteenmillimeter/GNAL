@@ -12,6 +12,7 @@ DEPS=(
 	sqlite3
 	admesh
 	openscad
+	python3
 )
 
 for dep in ${DEPS[@]}; do
