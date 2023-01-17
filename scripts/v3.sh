@@ -83,6 +83,8 @@ render_part () {
 	else
 		firstline=`head -n 1 "$stl"`
 		if [[ $firstline == solid* ]]; then
+			#order stl file if ascii
+			python3 scripts/c14n_stl.py "$stl"
 			#convert from ascii to binary
 			tmpBinary=`mktemp`
 			admesh -c -b "$tmpBinary" "$stl"
