@@ -13,6 +13,7 @@ DEPS=(
 	admesh
 	openscad
 	bc
+	python3
 )
 
 for dep in ${DEPS[@]}; do
