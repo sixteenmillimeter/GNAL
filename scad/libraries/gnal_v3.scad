@@ -48,7 +48,9 @@ function calcIncrement(spacing, fn) = spacing / fn;
  * 2019.05 (and maybe earlier), but should be explored.
  **/
 module spiral (rotations = 40, start_d = 48, spacing = 2.075, bottom = -7.1, fn) {
-
+    diam = (rotations * spacing * 2) + start_d;
+    echo("DIAM", diam);
+    echo("SPIRAL", rotations * PI * ((start_d + diam) / 2));
     //bottom = -7.1;
     w = 1.4;
     top_w = .8;

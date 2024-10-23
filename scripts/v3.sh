@@ -63,9 +63,9 @@ render_part () {
 
 	start=`date +%s`
 	if [[ "${SIZE}" == "100ft" ]]; then
-		openscad --csglimit=20000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=800" -D "DEBUG=false" "${scad}"
+		openscad --enable manifold --csglimit=20000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=800" -D "DEBUG=false" "${scad}"
 	else
-		openscad --csglimit=20000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=600" -D "DEBUG=false" "${scad}"
+		openscad --enable manifold --csglimit=20000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=600" -D "DEBUG=false" "${scad}"
 	fi
 	
 	end=`date +%s`

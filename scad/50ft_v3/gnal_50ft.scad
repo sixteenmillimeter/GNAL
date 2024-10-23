@@ -6,12 +6,12 @@ SPOKE_COUNT = 24;
 FN = 200;
 $fn = FN;
 
-module gnal_50ft_spiral (spiral_count = 40, od = 215.75, quarter = false) {
-    outer_d = 215;
-    outer_d_inside = 209;
+module gnal_50ft_spiral (spiral_count = 40, od = 215, quarter = false, reinforced = true) {
+    outer_d = od;
+    outer_d_inside = outer_d - 6;
     outer_h = 7.5;
     
-    spoke_len = 81;
+    spoke_len = ((outer_d - 48) / 2) - 2.5; //81;
     spoke_w = 3;
     spoke_h = 4.2 + 3;
     
@@ -46,6 +46,7 @@ module gnal_50ft_spiral (spiral_count = 40, od = 215.75, quarter = false) {
         }
     }
     //secondary spokes
+    /*
     for (i = [0 : SPOKE_COUNT]) {
         rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT)]) {
             translate([(outer_d / 2) - (spoke_2_len / 2) - 2, 0, -3.6]) {
@@ -53,12 +54,15 @@ module gnal_50ft_spiral (spiral_count = 40, od = 215.75, quarter = false) {
             }
         }
     }
+    */
     //spoke cross bars
-    for (i = [0 : SPOKE_COUNT]) {
-        rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT)]) {
-            translate([63, 0, -3.6]) {
-                rotate([0, 0, 20]) {
-                    cube([ spoke_w, 18, spoke_h], center = true);
+    if (outer_d > 130) {
+        for (i = [0 : SPOKE_COUNT]) {
+            rotate([0, 0, (i + 0.5) * (360 / SPOKE_COUNT)]) {
+                translate([63, 0, -3.6]) {
+                    rotate([0, 0, 20]) {
+                        cube([ spoke_w, 18, spoke_h], center = true);
+                    }
                 }
             }
         }
@@ -66,7 +70,7 @@ module gnal_50ft_spiral (spiral_count = 40, od = 215.75, quarter = false) {
     
     translate([0, 0, -.1]) {
         rotate([0, 0, -90]) {
-            film_guide(spiral_count);
+            film_guide(spiral_count, reinforced = reinforced);
         }
     }
 }
@@ -182,17 +186,19 @@ module gnal_50ft_top () {
     }        
 }
 
-module film_guide (rotations = 40, id = 45.55 - .5, spacing = 2.075, bottom = -2) {
+module film_guide (rotations = 40, id = 45.55 - .5, spacing = 2.075, bottom = -2, reinforced = true) {
     spiral(rotations, id, spacing, bottom, $fn);
     //reinforce outer spiral
-    difference () {
-        spiral_reinforcement(208.9, spacing, -0.1, $fn);
-        translate([107.35, 6, 0]) cube([5, 15, 10], center = true);
+    if (reinforced) {
+        difference () {
+            spiral_reinforcement(208.9, spacing, -0.1, $fn);
+            translate([107.35, 6, 0]) cube([5, 15, 10], center = true);
+        }
     }
     
 }
 
-PART="spiral";
+PART="30ft_spiral";
 
 if (PART == "spiral") {
     gnal_50ft_spiral();
@@ -224,6 +230,8 @@ if (PART == "spiral") {
     gnal_spindle_single();
 } else if (PART == "spindle_stacking") {
     rotate([0, 180, 0]) gnal_stacking_spindle();
+} else if (PART == "30ft_spiral") {
+    gnal_50ft_spiral(spiral_count = 19, od = 127, reinforced = false);
 } else if (PART == "spiral_test") {
     difference () {
         gnal_50ft_spiral();
