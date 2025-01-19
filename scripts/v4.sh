@@ -1,5 +1,5 @@
 #!/bin/bash
-V="v3"
+V="v4"
 
 # Commit changes before running this build script
 
@@ -25,6 +25,7 @@ FILES=(
 	"spindle_bottom" 
 	"spindle_top" 
 	"spindle_single"
+	"spindle_stacking"  
 	"insert_s8" 
 	"insert_16" 
 	"spacer"
@@ -171,9 +172,9 @@ render_part () {
 		mkdir -p "${CSG}/${SIZE}_${V}/"
 		start=`date +%s`
 		if [[ "${SIZE}" == "100ft" ]]; then
-			openscad --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=800" -D "DEBUG=false" "${scad}"
+			openscad --enable manifold --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=800" -D "DEBUG=false" "${scad}"
 		else
-			openscad --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=600" -D "DEBUG=false" "${scad}"
+			openscad --enable manifold --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=600" -D "DEBUG=false" "${scad}"
 		fi
 		end=`date +%s`
 		runtime=$((end-start))
@@ -187,9 +188,9 @@ render_part () {
 		fullPath=`realpath "${stl}"`
 		data="import(\"${fullPath}\");"
 		echo data > "${tmp}.scad"
-		openscad -o "$png" --csglimit=20000000 --imgsize=2048,2048 --colorscheme=DeepOcean  "${tmp}.scad"
+		openscad -o "$png" --enable manifold --csglimit=20000000 --imgsize=2048,2048 --colorscheme=DeepOcean  "${tmp}.scad"
 	else
-		openscad -o "$png" --csglimit=20000000 --imgsize=2048,2048 --colorscheme=DeepOcean  -D "DEBUG=false" -D "PART=\"${FILE}\"" "${scad}"
+		openscad -o "$png" --enable manifold --csglimit=20000000 --imgsize=2048,2048 --colorscheme=DeepOcean  -D "DEBUG=false" -D "PART=\"${FILE}\"" "${scad}"
 	fi
 }
 
@@ -218,7 +219,7 @@ echo "openscad,cpu,stl,stl_hash,stl_size,source_hash,source_size,facets,volume,r
 for SIZE in "${SIZES[@]}"
 do
 	:
-	scad="./scad/${SIZE}_${V}/gnal_${SIZE}.scad"
+	scad="./scad/${V}/gnal.scad"
 	srchash=`sha256sum "${scad}" | awk '{ print $1 }'`
 	srcsize=`wc -c < "${scad}"`
 	srcsize=`echo $srcsize | xargs`

@@ -228,10 +228,6 @@ if (PART == "spiral") {
     gnal_spindle_bottom();
 } else if (PART == "spindle_single") {
     gnal_spindle_single();
-} else if (PART == "spindle_stacking") {
-    rotate([0, 180, 0]) gnal_stacking_spindle();
-} else if (PART == "30ft_spiral") {
-    gnal_50ft_spiral(spiral_count = 19, od = 127, reinforced = false);
 } else if (PART == "spiral_test") {
     difference () {
         gnal_50ft_spiral();
