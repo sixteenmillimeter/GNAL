@@ -106,8 +106,8 @@ Good question!
 
 #### [All 50ft v1 STL files in a .zip](https://links.sixteenmillimeter.com/f67lQo2n)
 
-* [Bottom Spiral](stl/50ft_v1/gnal_50ft_bottom_spiral.stl)
-* [Top Spiral](stl/50ft_v1/gnal_50ft_top_spiral.stl)
+* [Bottom Spiral](stl/50ft_v1/gnal_50ft_spiral_bottom.stl)
+* [Top Spiral](stl/50ft_v1/gnal_50ft_spiral_top.stl)
 * [Top](stl/50ft_v1/gnal_50ft_top.stl)
 * [Spacer](stl/50ft_v1/gnal_50ft_spacer.stl)
 
@@ -115,8 +115,8 @@ Good question!
 
 #### [All 100ft v1 STL files in a .zip](https://links.sixteenmillimeter.com/CVihrAr5)
 
-* [Bottom Spiral](stl/100ft_v1/gnal_100ft_bottom_spiral.stl)
-* [Top Spiral](stl/100ft_v1/gnal_100ft_top_spiral.stl)
+* [Bottom Spiral](stl/100ft_v1/gnal_100ft_spiral_bottom.stl)
+* [Top Spiral](stl/100ft_v1/gnal_100ft_spiral_top.stl)
 * [Top](stl/100ft_v1/gnal_100ft_top.stl)
 * [Spacer](stl/100ft_v1/gnal_100ft_spacer.stl)
 
