@@ -2,7 +2,7 @@
 
 A free and open-source processing system for 16mm and Super8 film
 
-![GNAL 50ft V3 all pieces](/img/gnal_50ft_v3.jpg)
+![GNAL 50ft V3 all pieces](./img/gnal_50ft_v3.jpg)
 
 1. [What's GNAL?](#what)
 2. [STL Files](#stls)
@@ -59,7 +59,7 @@ Good question!
 
 ## V3 STL Files
 
-![V3 50ft spiral top and bottom](/img/gnal_50ft_v3_spiral_render.jpg)
+![V3 50ft spiral top and bottom](./img/gnal_50ft_v3_spiral_render.jpg)
 
 **50ft/15m**
 
@@ -89,7 +89,7 @@ Good question!
 
 ## V2 STL Files
 
-![V2 50ft spiral top and bottom](/img/gnal_50ft_v2_spiral_render.jpg)
+![V2 50ft spiral top and bottom](./img/gnal_50ft_v2_spiral_render.jpg)
 
 **50ft/15m**
 
@@ -115,7 +115,7 @@ Good question!
 
 ## V1 STL Files
 
-![V1 50ft spiral top and bottom](/img/gnal_50ft_v1_spiral_render.jpg)
+![V1 50ft spiral top and bottom](./img/gnal_50ft_v1_spiral_render.jpg)
 
 **50ft/15m**
 
