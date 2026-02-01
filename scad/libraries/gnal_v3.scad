@@ -27,6 +27,8 @@ LEN = 21;
 INSERT_D = 26;
 SINGLE_THREAD_D = 12;
 
+function R (diameter) = diameter / 2.0;
+
 function X (start_r, spacing, fn, r, i) = (start_r + (r * spacing) + (i * calcIncrement(spacing, fn))) * cos(i * calcAngle(fn));
 function Y (start_r, spacing, fn, r, i) = (start_r + (r * spacing) + (i * calcIncrement(spacing, fn))) * sin(i * calcAngle(fn));
 
@@ -39,6 +41,10 @@ function calcFn(start_d, start_fn, end_d, spacing, r) = start_fn +
         / (circ(end_d) - circ(start_d))) * ($fn - start_fn));
 function calcR(start_d, spacing, r) = (start_d / 2) + (spacing * r);
 function calcIncrement(spacing, fn) = spacing / fn;
+
+module m4_nut (H = 3.1) {
+    cylinder(r = R(8.1), h = H, center = true, $fn = 6);
+}
 
 /**
  * spiral_7 - Combination of spiral_3 and spiral_4 that doesn't sacrifice
@@ -491,7 +497,7 @@ module number_one () {
     translate([0, -6 / 2, 0]) rotate([45, 0, 0]) cube([2, 1, 1], center = true);
 }
 
-module gnal_spindle_top () {
+module gnal_spindle_top (reinforced = false) {
     D = 50;
     THICKNESS = 2.5;
     H = 19.5;
@@ -505,90 +511,101 @@ module gnal_spindle_top () {
     NOTCHES = 17;
     NOTCH = 1.5;
     FINE = 200;
-
     difference () {
-        //cup
-        translate([0, 0, ROUND - 2]) minkowski () {
-            cylinder(r = (D / 2) - ROUND, h = (H * 2) - ROUND, center = true, $fn = FINE);
-            sphere(r = ROUND, $fn = FINE);
-        }
-        translate([0, 0, ROUND  - 2 + THICKNESS]) minkowski () {
-            cylinder(r = (D / 2) - THICKNESS - ROUND, h = (H * 2) - ROUND, center = true, $fn = 200);
-            sphere(r = ROUND, $fn = FINE);
-        }
-        //hollow out cup
-        translate([0, 0, H + ROUND - 4 -  3]) {
-            cylinder(r = (D / 2) + 1, h = H * 2, center = true);
-        }
-        
-        //inner cup bevel
-        translate([0, 0, (H / 2) - ROUND - 1]) {
-            cylinder(r1 = (D / 2) - 2.5, r2 = (D / 2) - 2.5 + 1, h = 1, center = true, $fn = FINE);
-        }
-        //outer cup bevel
-        translate([0, 0, (H / 2) - ROUND - 1]) {
+        union () {
             difference () {
-                cylinder(r = (D / 2) + .25, h = 1, center = true, $fn = FINE);
-                cylinder(r2 = (D / 2) - .8, r1 = (D / 2) - .8 + 1, h = 1, center = true, $fn = FINE);
-            }
-        }
-        //hole in cup
-        translate([21, 0, -10]) cylinder(r = 3 / 2, h = 40, center = true, $fn = 40);
-    }
-    
-    //reference cylinder
-    //translate([0, 0, -6.6]) color("red") cylinder(r = 50 / 2, h = 19.57, center = true);
-
-    //handle
-    translate([0, 0, -15]) {
-        difference() {
-            cylinder(r1 = HANDLE_BASE / 2, r2 = HANDLE_TOP / 2, h = HANDLE_H, $fn = FINE);
-            //text
-            translate([3 / 2, 0, 15 + 39.75]) number_one();
-            translate([-3 / 2, 0, 15 + 39.75]) number_one();
-            //ring negative
-            translate([0, 0, 31 + 14.5]) {
-                difference () {
-                        cylinder(r = HANDLE_D / 2 + 2, h = 20, center = true);
-                        cylinder(r = HANDLE_D / 2 - .5, h = 20 + 1, center = true);
+                //cup
+                translate([0, 0, ROUND - 2]) minkowski () {
+                    cylinder(r = R(D) - ROUND, h = (H * 2) - ROUND, center = true, $fn = FINE);
+                    sphere(r = ROUND, $fn = FINE);
                 }
-            }
-            //handle notches
-            for(i = [0 : NOTCHES]) {
-                rotate([0, 0, i * (360 / NOTCHES)]) {
-                    translate([0, HANDLE_D / 2 - .5, 31 + 14.5]) {
-                       rotate([0.75, 0, 0]) rotate([0, 0, 45]) { 
-                           Right_Angled_Triangle(a = NOTCH, b = NOTCH, height = 20, centerXYZ=[true, true, true]);
-                       }
+                translate([0, 0, ROUND  - 2 + THICKNESS]) minkowski () {
+                    cylinder(r = R(D) - THICKNESS - ROUND, h = (H * 2) - ROUND, center = true, $fn = 200);
+                    sphere(r = ROUND, $fn = FINE);
+                }
+                //hollow out cup
+                translate([0, 0, H + ROUND - 4 -  3]) {
+                    cylinder(r = R(D) + 1, h = H * 2, center = true);
+                }
+                
+                //inner cup bevel
+                translate([0, 0, (H / 2) - ROUND - 1]) {
+                    cylinder(r1 = R(D) - 2.5, r2 = R(D) - 2.5 + 1, h = 1, center = true, $fn = FINE);
+                }
+                //outer cup bevel
+                translate([0, 0, (H / 2) - ROUND - 1]) {
+                    difference () {
+                        cylinder(r = R(D) + .25, h = 1, center = true, $fn = FINE);
+                        cylinder(r2 = R(D) - .8, r1 = (D / 2) - .8 + 1, h = 1, center = true, $fn = FINE);
                     }
                 }
+                //hole in cup
+                translate([21, 0, -10]) cylinder(r = R(3), h = 40, center = true, $fn = 40);
             }
-            //bevel handle at top
-           translate([0, 0, 54.01]) {
-                difference () {
-                    cylinder(r = 13 / 2, h = 1, center = true);
-                    cylinder(r1 = 12.5 / 2, r2 = 11.5 / 2, h = 1.01, center = true);
+            
+            //reference cylinder
+            //translate([0, 0, -6.6]) color("red") cylinder(r = 50 / 2, h = 19.57, center = true);
+
+            //handle
+            translate([0, 0, -15]) {
+                difference() {
+                    cylinder(r1 = R(HANDLE_BASE), r2 = R(HANDLE_TOP), h = HANDLE_H, $fn = FINE);
+                    //text
+                    translate([3 / 2, 0, 15 + 39.75]) number_one();
+                    translate([-3 / 2, 0, 15 + 39.75]) number_one();
+                    //ring negative
+                    translate([0, 0, 31 + 14.5]) {
+                        difference () {
+                                cylinder(r = R(HANDLE_D) + 2, h = 20, center = true);
+                                cylinder(r = R(HANDLE_D) - .5, h = 20 + 1, center = true);
+                        }
+                    }
+                    //handle notches
+                    for(i = [0 : NOTCHES]) {
+                        rotate([0, 0, i * (360 / NOTCHES)]) {
+                            translate([0, HANDLE_D / 2 - .5, 31 + 14.5]) {
+                               rotate([0.75, 0, 0]) rotate([0, 0, 45]) { 
+                                   Right_Angled_Triangle(a = NOTCH, b = NOTCH, height = 20, centerXYZ=[true, true, true]);
+                               }
+                            }
+                        }
+                    }
+                    //bevel handle at top
+                   translate([0, 0, 54.01]) {
+                        difference () {
+                            cylinder(r = R(13), h = 1, center = true);
+                            cylinder(r1 = R(12.5), r2 = R(11.5), h = 1.01, center = true);
+                        }
+                    }
                 }
+
+            }
+            //attach handle with pyramid cylinder
+            translate ([0, 0, -13.7]) {
+                cylinder(r1 = R(16) + 2, r2 = R(16) - .1, h = 3, center = true, $fn = FINE);
+            }
+
+            //plate under cup
+            translate([0, 0, -17.75]) {
+                cylinder(r = R(31.5), h = 1, center = true, $fn = FINE);
+            }
+            //screw threading
+            translate([0, 0, -37.5]) {
+                metric_thread (diameter = 13.6, pitch = PITCH, thread_size = THREAD, length = 21);
+            }
+            //cylinder plug
+            translate([0, 0, -37.5 + (21 / 2) - 1]) {
+                cylinder(r = R(12), h = 21, center = true, $fn = FINE);
             }
         }
-
+        //BOM: 1, M4 50mm hex bolt, Central reinforcement
+        if (reinforced) {
+            translate([0, 0, -12.01]) cylinder(r = R(4.25), h = 53, center = true, $fn = 40);
+            translate([0, 0, 15.95]) cylinder(r1 = R(4.25), r2 = 0.01, h = 3, center = true, $fn = 40);
+            translate([0, 0, -37]) m4_nut(); 
+        }
     }
-    //attach handle with pyramid cylinder
-    translate ([0, 0, -13.7]) {
-        cylinder(r1 = 16 / 2 + 2, r2 = 16 / 2 - .1, h = 3, center = true, $fn = FINE);
-    }
-    //plate under cup
-    translate([0, 0, -17.75]) {
-        cylinder(r = 31.5 / 2, h = 1, center = true, $fn = FINE);
-    }
-    //screw
-    translate([0, 0, -37.5]) {
-        metric_thread (diameter=13.6, pitch = PITCH, thread_size = THREAD, length = 21);
-    }
-    //cylinder plug
-    translate([0, 0, -37.5 + (21 / 2) - 1]) {
-        cylinder(r = 12 / 2, h = 21, center = true, $fn = FINE);
-    }
+    
 }
 
 module gnal_spindle_single () {
