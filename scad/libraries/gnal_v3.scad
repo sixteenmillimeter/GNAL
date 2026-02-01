@@ -460,7 +460,7 @@ module outer_screw (LEN) {
     }
 }
 
-module gnal_spindle_bottom (ALT = false, HEX = false) {
+module gnal_spindle_bottom (ALT = false, HEX = false, reinforced = false) {
     OD = 13.6 + .5;
     PITCH = 1.5;
     THREAD = 1.6;
@@ -468,27 +468,35 @@ module gnal_spindle_bottom (ALT = false, HEX = false) {
     
     LEN = 17.1;
     ALT_LEN = 27.1;
-    difference () {
-        gnal_spindle_bottom_base(HEX);
-        //inner screw negative
-        translate([0, 0, -30]) union() {
-            metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
-            translate([0, 0, 0.2]) {
-                metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
-            }
-        }
-   }
 
     difference () {
-        //outer screw
-        if (ALT) {
-            outer_screw(ALT_LEN);
-        } else {
-            outer_screw(LEN);
+        union () {
+            difference () {
+                gnal_spindle_bottom_base(HEX);
+                //inner screw negative
+                translate([0, 0, -30]) union() {
+                    metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
+                    translate([0, 0, 0.2]) {
+                        metric_thread (diameter=OD, pitch=PITCH, thread_size = THREAD, length = IN_LEN);
+                    }
+                }
+           }
+
+            difference () {
+                //outer screw
+                if (ALT) {
+                    outer_screw(ALT_LEN);
+                } else {
+                    outer_screw(LEN);
+                }
+            } 
         }
         //hollow center
-        cylinder(r = 3.8 / 2, h = 100, center = true, $fn = 60);
-    }  
+        if (reinforced) {
+            translate([0, 0, -7.49]) m4_nut();
+            translate([0, 0, 2.01]) cylinder(r = R(4.25), h = 16, center = true, $fn = 60);
+        }
+    }
 }
 
 module number_one () {
