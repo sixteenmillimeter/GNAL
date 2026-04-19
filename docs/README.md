@@ -240,3 +240,28 @@ The file size of the V3 spiral has reduced to about 30% of the V1 and V2 spirals
 Faster render times mean more iteration and less time between tests.
 The next part of the process to examine is slicing which has primarily been done with Cura, but other engines will be looked at for their speed, efficiency and print quality.
 
+## V3 Updates
+
+### Reinforced Spindles
+
+The first in a list of intended updates to the V3 model is reinforcing the spindles.
+This is acheived by adding voids for M4 bolts in the spindles with the intention of preventing them from snapping due to overtightening or perpendicular force on the threaded parts.
+The bolts should be friction fit or added with a small amount of glue to adhere them inside the spindles.
+
+* 1x 40mm M4 Hex Bolt *(Accepts 30-50mm bolts if needed)*
+* 1x 16mm M4 Hex Bolt
+
+
+### Manifold Backend
+
+Another upgrade in the build script is the use of the [Manifold](https://manifoldcad.org/docs/html/) backend.
+This drops the CPU render time dramatically, even after the spiral modifications in V3.
+
+OpenSCAD has improved performance in the core backend since starting this project, but rendering using `--backend=manifold` drops even the most complex solid geometry calculations to times needed for fast design iterations.
+
+
+### Canonical Renders
+
+The next improvement was to introduce [c14n_stl.py](https://github.com/nophead/NopSCADlib/blob/master/scripts/c14n_stl.py) from [NopSCADlib](https://github.com/nophead/NopSCADlib) to sort compiled STLs consistently between renders.
+Doing this *should* mean that different machines will produce identical STLs before they're converted to binary and prevent excessive diffs when small changes are made.
+Previously this was left out to reduce the Python dependency but it is common enough as a default on many systems to mean that adding a library-free Python script is not a concern.
