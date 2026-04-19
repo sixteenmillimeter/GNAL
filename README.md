@@ -33,12 +33,17 @@ Happy processing!
 There has been a lot of development around 3D printed processing spirals and any projects will be linked here.
 If you find any, please share with the email address at the bottom of this README.
 
-* [Movie Film Spiral Developing Tank by mb_maker on Thingiverse](https://www.thingiverse.com/thing:4715086)
-* [New 16mm developing tank](https://cinematography.com/index.php?/forums/topic/83456-new-16mm-developing-tank/)
+* ~~[Movie Film Spiral Developing Tank by mb_maker on Thingiverse](https://www.thingiverse.com/thing:4715086)~~
+* [New 16mm developing tank on cinematography.com](https://cinematography.com/index.php?/forums/topic/83456-new-16mm-developing-tank/)
 
 ## Where's the tank?
 
 Good question!
+
+## Updates
+
+Newly added to v3: reinforced spindles.
+Glue or simply insert a 40mm M4 hex bolt to the top spindle and a 16mm M4 hex bolt to the bottom spindle to reinforce them and prevent breaking from overtightening or perpendicular force on the threaded areas.
 
 ----
 <a name="stls"></a>
@@ -48,7 +53,8 @@ Good question!
 
 **50ft/15m**
 
-#### [All 50ft v3 STL files in a .zip](https://links.sixteenmillimeter.com/mE4nkSm4)
+#### [All 50ft v3 STL files in a .zip](https://raw.githubusercontent.com/sixteenmillimeter/GNAL/main/releases/gnal_50ft_v3.zip)
+#### [All 50ft v3 STL files in a .tar.gz](https://raw.githubusercontent.com/sixteenmillimeter/GNAL/main/releases/gnal_50ft_v3.tar.gz)
 
 * [Spiral](stl/50ft_v3/gnal_50ft_spiral.stl)
 * [Top](stl/50ft_v3/gnal_50ft_top.stl)
@@ -57,11 +63,14 @@ Good question!
 * [Bottom Spiral Insert 16mm](stl/50ft_v3/gnal_50ft_insert_16.stl)
 * [Bottom Spacer 16mm](stl/50ft_v3/gnal_50ft_spacer_16.stl)
 * [Spindle Top](stl/50ft_v3/gnal_50ft_spindle_top.stl)
+* [Spindle Top Reinforced](stl/50ft_v3.gnal_50ft_spindle_top_reinforced.stl) - Add 40mm M4 Hex Bolt
 * [Spindle Bottom](stl/50ft_v3/gnal_50ft_spindle_bottom.stl)
+* [Spindle Bottom Reinforced](stl/50ft_v3.gnal_50ft_spindle_bottom_reinforced.stl) - Add 16mm M4 Hex Bolt
 
 **100ft/30m**
 
-#### [All 100ft v3 STL files in a .zip](https://links.sixteenmillimeter.com/fbdwf3C8)
+#### [All 100ft v3 STL files in a .zip](https://raw.githubusercontent.com/sixteenmillimeter/GNAL/main/releases/gnal_100ft_v3.zip)
+#### [All 100ft v3 STL files in a .tar.gz](https://raw.githubusercontent.com/sixteenmillimeter/GNAL/main/releases/gnal_100ft_v3.tar.gz)
 
 * [Spiral](stl/100ft_v3/gnal_100ft_spiral.stl)
 * [Top](stl/100ft_v3/gnal_100ft_top.stl)
@@ -70,15 +79,15 @@ Good question!
 * [Bottom Spiral Insert 16mm](stl/100ft_v3/gnal_100ft_insert_16.stl)
 * [Bottom Spacer 16mm](stl/100ft_v3/gnal_100ft_spiral.stl)
 * [Spindle Top](stl/100ft_v3/gnal_100ft_spindle_top.stl)
+* [Spindle Top Reinforced](stl/50ft_v3.gnal_100ft_spindle_top_reinforced.stl) - Add 40mm M4 Hex Bolt
 * [Spindle Bottom](stl/100ft_v3/gnal_100ft_spindle_bottom.stl)
+* [Spindle Bottom Reinforced](stl/100ft_v3.gnal_50ft_spindle_bottom_reinforced.stl) - Add 16mm M4 Hex Bolt
 
 ## V2 STL Files
 
 ![V2 50ft spiral top and bottom](./img/gnal_50ft_v2_spiral_render.jpg)
 
 **50ft/15m**
-
-#### [All 50ft v2 STL files in a .zip](https://links.sixteenmillimeter.com/vRPj4yTC)
 
 * [Spiral](stl/50ft_v2/gnal_50ft_spiral.stl)
 * [Top](stl/50ft_v2/gnal_50ft_top.stl)
@@ -88,8 +97,6 @@ Good question!
 * [Bottom Spacer 16mm](stl/50ft_v2/gnal_50ft_spacer_16.stl)
 
 **100ft/30m**
-
-#### [All 100ft v2 STL files in a .zip](https://links.sixteenmillimeter.com/XRlnssjz)
 
 * [Spiral](stl/100ft_v2/gnal_100ft_spiral.stl)
 * [Top](stl/100ft_v2/gnal_100ft_top.stl)
@@ -104,16 +111,12 @@ Good question!
 
 **50ft/15m**
 
-#### [All 50ft v1 STL files in a .zip](https://links.sixteenmillimeter.com/f67lQo2n)
-
 * [Bottom Spiral](stl/50ft_v1/gnal_50ft_spiral_bottom.stl)
 * [Top Spiral](stl/50ft_v1/gnal_50ft_spiral_top.stl)
 * [Top](stl/50ft_v1/gnal_50ft_top.stl)
 * [Spacer](stl/50ft_v1/gnal_50ft_spacer.stl)
 
 **100ft/30m**
-
-#### [All 100ft v1 STL files in a .zip](https://links.sixteenmillimeter.com/CVihrAr5)
 
 * [Bottom Spiral](stl/100ft_v1/gnal_100ft_spiral_bottom.stl)
 * [Top Spiral](stl/100ft_v1/gnal_100ft_spiral_top.stl)

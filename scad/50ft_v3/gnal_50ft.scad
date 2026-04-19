@@ -187,7 +187,7 @@ module film_guide (rotations = 40, id = 45.55 - .5, spacing = 2.075, bottom = -2
     spiral(rotations, id, spacing, bottom, $fn);
 }
 
-PART="quarter_a";
+PART="spindle_top_reinforced";
 
 if (PART == "spiral") {
     gnal_50ft_spiral();
@@ -213,8 +213,12 @@ if (PART == "spiral") {
     gnal_spacer_16();
 } else if (PART == "spindle_top") {
     gnal_spindle_top();
+} else if (PART == "spindle_top_reinforced") {
+    gnal_spindle_top(reinforced = true);
 } else if (PART == "spindle_bottom") {
     gnal_spindle_bottom();
+} else if (PART == "spindle_bottom_reinforced") {
+    gnal_spindle_bottom(reinforced = true);
 } else if (PART == "spindle_single") {
     gnal_spindle_top();
 } else if (PART == "spiral_test") {

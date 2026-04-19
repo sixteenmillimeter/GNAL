@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e
+
 V="v3"
 
 echo "Rendering GNAL ${V}"
@@ -12,7 +15,7 @@ DIST=./stl
 CSG=./csg
 IMG=./img
 NOTES=./notes/${V}.csv
-STEP=true
+STEP=false
 LOGGING=true
 
 #"quarter_a" "quarter_b" "quarter_c" "quarter_d"
@@ -20,7 +23,9 @@ LOGGING=true
 
 FILES=( 
 	"spindle_bottom" 
+	"spindle_bottom_reinforced"
 	"spindle_top" 
+	"spindle_top_reinforced"
 	"spindle_single"  
 	"insert_s8" 
 	"insert_16" 
@@ -32,10 +37,6 @@ FILES=(
 SIZES=( "50ft" "100ft" ) 
 
 mkdir -p "${DIST}"
-if [ $STEP = true ]; then
-	mkdir -p "${CSG}"
-	mkdir -p "${CSG}/${SIZE}_${V}/"
-fi
 
 render_part () {
 	scad="${1}"
@@ -45,14 +46,23 @@ render_part () {
 	csg="${CSG}/${SIZE}_${V}/gnal_${SIZE}_${FILE}.csg"
 	png="${IMG}/gnal_${SIZE}_${V}_${FILE}.png"
 
+	if [ $STEP = true ]; then
+		mkdir -p "${CSG}"
+		mkdir -p "${CSG}/${SIZE}_${V}/"
+	fi
+
 	echo "${scad} - ${FILE}"
 
 	start=`date +%s`
 	if [[ "${SIZE}" == "100ft" ]]; then
-		openscad --csglimit=2000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
+		openscad --backend=manifold --csglimit=2000000 -o "${stl}" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
 	else
-		openscad --csglimit=1000000 -o "$stl" -D "PART=\"${FILE}\"" -D "FN=600" "${scad}"
+		openscad --backend=manifold --csglimit=1000000 -o "${stl}" -D "PART=\"${FILE}\"" -D "FN=600" "${scad}"
 	fi
+
+	echo "Canonicalizing STL ${stl}..."
+	#canonicalize the file to prevent unneeded diffs in updated models
+	python3 ./scripts/c14n_stl.py "${stl}"
 	
 	end=`date +%s`
 	runtime=$((end-start))
@@ -64,7 +74,7 @@ render_part () {
 		facets="N/A"
 		volume="N/A"
 	else
-		firstline=`head -n 1 "$stl"`
+		firstline=`head -n 1 "${stl}"`
 		if [[ $firstline == solid* ]]; then
 			#convert from ascii to binary
 			tmpBinary=`mktemp`
@@ -95,15 +105,19 @@ render_part () {
 		echo "$line"
 	fi
 
-	start=`date +%s`
-	if [[ "${SIZE}" == "100ft" ]]; then
-		openscad --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
-	else
-		openscad --csglimit=10000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=600" "${scad}"
+	if [ $STEP = true ]; then
+		echo "Rendering CSG of ${stl}..."
+		start=`date +%s`
+
+		if [[ "${SIZE}" == "100ft" ]]; then
+			openscad --backend=manifold --csglimit=20000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=800" "${scad}"
+		else
+			openscad --backend=manifold --csglimit=10000000 -o "$csg" -D "PART=\"${FILE}\"" -D "FN=600" "${scad}"
+		fi
+		
+		end=`date +%s`
+		runtime=$((end-start))
 	fi
-	
-	end=`date +%s`
-	runtime=$((end-start))
 
 	echo "Rendering image of ${stl}..."
 
@@ -111,10 +125,10 @@ render_part () {
 		tmp=`mktemp`
 		fullPath=`realpath "${stl}"`
 		data="import(\"${fullPath}\");"
-		echo data > "${tmp}.scad"
-		openscad -o "$png" --imgsize=2048,2048 --colorscheme=DeepOcean "${tmp}.scad"
+		echo "${data}" > "${tmp}.scad"
+		openscad -o "$png" --backend=manifold --imgsize=2048,2048 --csglimit=20000000 --colorscheme=DeepOcean "${tmp}.scad"
 	else
-		openscad -o "$png" --imgsize=2048,2048 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
+		openscad -o "$png" --backend=manifold --imgsize=2048,2048 --csglimit=10000000 --colorscheme=DeepOcean -D "PART=\"${FILE}\"" "${scad}"
 	fi
 }
 
@@ -152,10 +166,13 @@ do
 	done
 
 	# add license to directories for zip
-	cp ./LICENSE.txt "./stl/${SIZE}_v3/"
+	cp ./LICENSE.txt "./stl/${SIZE}_${V}/"
+	mkdir -p ./releases
 	# zip all
-	zip -x ".*" -r "./releases/gnal_${SIZE}_v3.zip" "./stl/${SIZE}_v3/"
+	zip -x ".*" -r "./releases/gnal_${SIZE}_${V}.zip" "./stl/${SIZE}_${V}/"
 	# tar all
-	tar --exclude=".*" -czvf "./releases/gnal_${SIZE}_v3.tar.gz" "./stl/${SIZE}_v3/"
+	tar --exclude=".*" -czvf "./releases/gnal_${SIZE}_${V}.tar.gz" "./stl/${SIZE}_${V}/"
+	rm -rf "./stl/${SIZE}_${V}/LICENSE.txt"
+	echo "Released ${SIZE}_${V}"
 done
 

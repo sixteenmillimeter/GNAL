@@ -491,7 +491,7 @@ module gnal_spindle_bottom (ALT = false, HEX = false, reinforced = false) {
                 }
             } 
         }
-        //hollow center
+        //BOM: 1, M4 hex bolt 16mm, Central reinforcement
         if (reinforced) {
             translate([0, 0, -7.49]) m4_nut();
             translate([0, 0, 2.01]) cylinder(r = R(4.25), h = 16, center = true, $fn = 60);

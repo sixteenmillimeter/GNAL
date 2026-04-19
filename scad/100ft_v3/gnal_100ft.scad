@@ -283,8 +283,12 @@ if (PART == "spiral") {
     gnal_spacer_16();
 } else if (PART == "spindle_top") {
     gnal_spindle_top();
+} else if (PART == "spindle_top_reinforced") {
+    gnal_spindle_top(reinforced = true);
 } else if (PART == "spindle_bottom") {
     gnal_spindle_bottom();
+} else if (PART == "spindle_bottom_reinforced") {
+    gnal_spindle_bottom(reinforced = true);
 } else if (PART == "spindle_single") {
     gnal_spindle_single();
 }
